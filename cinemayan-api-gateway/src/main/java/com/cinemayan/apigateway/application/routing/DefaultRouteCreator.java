@@ -1,6 +1,7 @@
 package com.cinemayan.apigateway.application.routing;
 
-import com.cinemayan.apigateway.application.config.ServiceRoute;
+import com.cinemayan.apigateway.domain.RouteCreator;
+import com.cinemayan.apigateway.domain.ServiceRoute;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
@@ -26,6 +27,7 @@ public class DefaultRouteCreator implements RouteCreator {
     private final RedisRateLimiter rateLimiter;
     private final KeyResolver keyResolver;
 
+    @Override
     public Function<PredicateSpec, Buildable<Route>> createApiRoute (ServiceRoute service) {
         String formattedPath = API_ROUTE_PATH.formatted(service.getPathPrefix());
         return r -> r.path(formattedPath)
@@ -46,6 +48,7 @@ public class DefaultRouteCreator implements RouteCreator {
         return LOAD_BALANCED_URI_TEMPLATE.formatted(service.getName());
     }
 
+    @Override
     public Function<PredicateSpec, Buildable<Route>> createApiDocRoute (ServiceRoute service) {
         String formattedPath = API_DOC_ROUTE_PATH.formatted(service.getName());
         return r -> r.path(formattedPath)
@@ -53,6 +56,7 @@ public class DefaultRouteCreator implements RouteCreator {
             .uri(createLoadBalancedUri(service));
     }
 
+    @Override
     public Function<PredicateSpec, Buildable<Route>> createActuatorRoute (ServiceRoute service) {
         String formattedPath = ACTUATOR_ROUTE_PATH.formatted(service.getName());
         String serviceNameRegex = "/actuator/%ss/(?<segment>.*)".formatted(service.getName());

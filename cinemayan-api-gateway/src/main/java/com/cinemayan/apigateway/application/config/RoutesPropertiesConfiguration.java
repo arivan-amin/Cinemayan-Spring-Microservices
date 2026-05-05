@@ -5,6 +5,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties (RouteProperties.class)
-public class RoutesPropertiesConfiguration {
+class RoutesPropertiesConfiguration {
 
 }

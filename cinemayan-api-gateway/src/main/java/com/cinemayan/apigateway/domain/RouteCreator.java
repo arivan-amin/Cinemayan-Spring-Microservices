@@ -1,6 +1,5 @@
-package com.cinemayan.apigateway.application.routing;
+package com.cinemayan.apigateway.domain;
 
-import com.cinemayan.apigateway.application.config.ServiceRoute;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.builder.Buildable;
 import org.springframework.cloud.gateway.route.builder.PredicateSpec;

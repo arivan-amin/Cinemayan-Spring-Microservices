@@ -1,7 +1,7 @@
 package com.cinemayan.apigateway.application.config;
 
 import com.cinemayan.apigateway.application.routing.DefaultRouteCreator;
-import com.cinemayan.apigateway.application.routing.RouteCreator;
+import com.cinemayan.apigateway.domain.RouteCreator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;

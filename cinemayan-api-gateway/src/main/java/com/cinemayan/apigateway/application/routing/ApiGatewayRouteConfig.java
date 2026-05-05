@@ -1,6 +1,9 @@
 package com.cinemayan.apigateway.application.routing;
 
-import com.cinemayan.apigateway.application.config.*;
+import com.cinemayan.apigateway.application.config.EurekaProperties;
+import com.cinemayan.apigateway.application.config.RouteProperties;
+import com.cinemayan.apigateway.domain.RouteCreator;
+import com.cinemayan.apigateway.domain.ServiceRoute;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.RouteLocator;
