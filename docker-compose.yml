@@ -20,7 +20,7 @@ x-base-service: &base-service
 services:
   discovery-server:
     <<: *base-service
-    image: arivanamin/lms-discovery-server
+    image: arivanamin/cinemayan-discovery-server
     container_name: Discovery-Server
     ports:
       - "8761:8761"
@@ -28,7 +28,7 @@ services:
 
   api-gateway:
     <<: *base-service
-    image: arivanamin/lms-api-gateway
+    image: arivanamin/cinemayan-api-gateway
     container_name: API-Gateway
     ports:
       - "8080:8080"
