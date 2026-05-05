@@ -3,6 +3,7 @@ package com.cinemayan.catalog.application.advice;
 import com.cinemayan.catalog.domain.movie.exception.MovieAlreadyExistsException;
 import com.cinemayan.catalog.domain.movie.exception.MovieNotFoundException;
 import com.cinemayan.core.application.advice.ProblemDetailFactory;
+import com.cinemayan.core.application.advice.ProblemDetailParams;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +30,13 @@ public final class MovieControllerAdvice {
         log.warn("Movie not found Exception [movieID = {}, errorCode = {}, URI = {}]",
             exception.getMovieId(), exception.getErrorCode(), request.getRequestURI());
 
-        String title = "Resource Not Found";
-        String detail = "Movie with ID: %s, Not Found".formatted(exception.getMovieId());
-        return factory.build(NOT_FOUND, title, detail, RESOURCE_NOT_FOUND, RUNTIME_EXCEPTION_URL);
+        return factory.build(ProblemDetailParams.builder()
+            .status(NOT_FOUND)
+            .title("Resource Not Found")
+            .detail("Movie with ID: %s, Not Found".formatted(exception.getMovieId()))
+            .category(RESOURCE_NOT_FOUND)
+            .docUrl(RUNTIME_EXCEPTION_URL)
+            .build());
     }
 
     @ExceptionHandler (MovieAlreadyExistsException.class)
@@ -40,8 +45,12 @@ public final class MovieControllerAdvice {
         log.warn("Movie already exists [title = {}, errorCode = {}, URI = {}]",
             exception.getMovieTitle(), exception.getErrorCode(), request.getRequestURI());
 
-        String title = "Resource Conflict";
-        String detail = "Movie with title '%s' already exists".formatted(exception.getMovieTitle());
-        return factory.build(CONFLICT, title, detail, RESOURCE_CONFLICT, RUNTIME_EXCEPTION_URL);
+        return factory.build(ProblemDetailParams.builder()
+            .status(CONFLICT)
+            .title("Resource Conflict")
+            .detail("Movie with title '%s' already exists".formatted(exception.getMovieTitle()))
+            .category(RESOURCE_CONFLICT)
+            .docUrl(RUNTIME_EXCEPTION_URL)
+            .build());
     }
 }

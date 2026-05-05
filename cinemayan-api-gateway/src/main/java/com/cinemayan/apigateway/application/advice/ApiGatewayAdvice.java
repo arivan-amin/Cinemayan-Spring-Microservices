@@ -1,6 +1,7 @@
 package com.cinemayan.apigateway.application.advice;
 
 import com.cinemayan.core.application.advice.ProblemDetailFactory;
+import com.cinemayan.core.application.advice.ProblemDetailParams;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ProblemDetail;
@@ -28,10 +29,12 @@ public final class ApiGatewayAdvice {
             request.getMethod(), request.getURI(), request.getRemoteAddress(),
             exception.getMessage());
 
-        String title = "Resource Not Found";
-        String detail = "Requested Resource: %s, not found".formatted(request.getURI());
-
-        return factory.build(NOT_FOUND, title, detail, RESOURCE_NOT_FOUND,
-            REACTIVE_RESOURCE_NOT_FOUND_EXCEPTION_URL);
+        return factory.build(ProblemDetailParams.builder()
+            .status(NOT_FOUND)
+            .title("Resource Not Found")
+            .detail("Requested Resource: %s, not found".formatted(request.getURI()))
+            .category(RESOURCE_NOT_FOUND)
+            .docUrl(REACTIVE_RESOURCE_NOT_FOUND_EXCEPTION_URL)
+            .build());
     }
 }
