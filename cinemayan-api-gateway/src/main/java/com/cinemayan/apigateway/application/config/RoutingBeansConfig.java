@@ -1,6 +1,7 @@
-package com.cinemayan.apigateway.application.beans;
+package com.cinemayan.apigateway.application.config;
 
-import com.cinemayan.apigateway.application.routing.RoutingHelper;
+import com.cinemayan.apigateway.application.routing.DefaultRouteCreator;
+import com.cinemayan.apigateway.domain.RouteCreator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
@@ -44,7 +45,7 @@ class RoutingBeansConfig {
     }
 
     @Bean
-    public RoutingHelper routingHelper (RedisRateLimiter rateLimiter, KeyResolver keyResolver) {
-        return new RoutingHelper(rateLimiter, keyResolver);
+    public RouteCreator routeCreator (RedisRateLimiter rateLimiter, KeyResolver keyResolver) {
+        return new DefaultRouteCreator(rateLimiter, keyResolver);
     }
 }

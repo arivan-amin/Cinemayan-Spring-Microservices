@@ -23,10 +23,10 @@ scrape_configs:
           instance: 'Audit-Service'
           application: 'Audit-Service'
 
-  - job_name: 'student-service'
-    metrics_path: '/actuator/students/prometheus'
+  - job_name: 'catalog-service'
+    metrics_path: '/actuator/catalogs/prometheus'
     static_configs:
       - targets: [ '172.17.0.1:8080' ]
         labels:
-          instance: 'Student-Service'
-          application: 'Student-Service'
+          instance: 'Catalog-Service'
+          application: 'Catalog-Service'

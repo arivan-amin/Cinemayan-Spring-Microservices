@@ -14,5 +14,4 @@ public final class ProblemDetailProperties {
 
     public static final String TRACE_ID_VALUE = "traceId";
     public static final String SPAN_ID_VALUE = "spanId";
-    
 }

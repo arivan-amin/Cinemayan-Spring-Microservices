@@ -1,6 +1,5 @@
 package com.cinemayan.catalog.infrastructure.storage.movie;
 
-import com.cinemayan.catalog.domain.movie.entity.Movie;
 import com.cinemayan.outbox.infrastructure.audit.AuditFields;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,12 +21,4 @@ public class MovieEntity extends AuditFields {
     @UuidGenerator
     @Column (name = "id")
     private UUID id;
-
-    public static MovieEntity fromDomain (Movie domain) {
-        return new MovieEntity(domain.getId());
-    }
-
-    public Movie toDomain () {
-        return new Movie(id);
-    }
 }

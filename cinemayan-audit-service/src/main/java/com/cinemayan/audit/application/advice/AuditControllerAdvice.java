@@ -2,6 +2,7 @@ package com.cinemayan.audit.application.advice;
 
 import com.cinemayan.audit.domain.exception.AuditEventNotFoundException;
 import com.cinemayan.core.application.advice.ProblemDetailFactory;
+import com.cinemayan.core.application.advice.ProblemDetailParams;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +27,12 @@ public final class AuditControllerAdvice {
         log.warn("Audit event not found Exception [eventID = {}, errorCode = {}, URI = {}]",
             exception.getEventId(), exception.getErrorCode(), request.getRequestURI());
 
-        String title = "Resource Not Found";
-        String detail = "Audit Event with ID: %s, Not Found".formatted(exception.getEventId());
-        return factory.build(NOT_FOUND, title, detail, RESOURCE_NOT_FOUND, RUNTIME_EXCEPTION_URL);
+        return factory.build(ProblemDetailParams.builder()
+            .status(NOT_FOUND)
+            .title("Resource Not Found")
+            .detail("Audit Event with ID: %s, Not Found".formatted(exception.getEventId()))
+            .category(RESOURCE_NOT_FOUND)
+            .docUrl(RUNTIME_EXCEPTION_URL)
+            .build());
     }
 }

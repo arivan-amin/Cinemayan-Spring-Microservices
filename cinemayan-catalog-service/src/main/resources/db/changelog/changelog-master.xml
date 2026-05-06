@@ -7,7 +7,4 @@
 
     <include file="001-Outbox-LMS-8-create-audit-events-outbox-table.xml"
              relativeToChangelogFile="true" />
-    <include file="001-Student-LMS-1-create-students-table.xml" relativeToChangelogFile="true" />
-    <include file="002-Student-LMS-4-add-audit-fields-to-students-table.xml"
-             relativeToChangelogFile="true" />
 </databaseChangeLog>

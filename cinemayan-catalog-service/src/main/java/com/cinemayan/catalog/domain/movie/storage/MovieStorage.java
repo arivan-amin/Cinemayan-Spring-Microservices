@@ -13,7 +13,7 @@ public interface MovieStorage {
 
     Optional<Movie> findById (UUID id);
 
-    Optional<Movie> findByEmail (String email);
+    Optional<Movie> findByTitle (String title);
 
     UUID create (Movie student);
 
