@@ -5,6 +5,7 @@ import com.cinemayan.apigateway.application.config.RouteProperties;
 import com.cinemayan.apigateway.domain.RouteCreator;
 import com.cinemayan.apigateway.domain.ServiceRoute;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.*;
@@ -15,6 +16,7 @@ import java.util.function.Function;
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 class ApiGatewayRouteConfig {
 
     private final RouteCreator routeCreator;
@@ -23,6 +25,7 @@ class ApiGatewayRouteConfig {
 
     @Bean
     public RouteLocator routeLocator (RouteLocatorBuilder builder) {
+        log.info("Service route Properties fetched from config file = {}", routeProperties);
         RouteLocatorBuilder.Builder routes = builder.routes()
             .route(getDiscoveryServerRoute())
             .route(getDiscoveryServerStaticResourcesRoute());
