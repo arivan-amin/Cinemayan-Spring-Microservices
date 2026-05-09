@@ -1,50 +1,79 @@
 <configuration>
 
-    <springProperty name="appName" source="spring.application.name" />
-
-    <property scope="context" name="logDirectory"
-              value="${LOG_DIR:-${user.home}/Apps/Cinemayan-Spring-Microservices/Logs}" />
+    <springProperty name="appName" source="spring.application.name" defaultValue="unknown" />
+    <springProperty name="appVersion" source="spring.application.version" defaultValue="unknown" />
+    <springProperty name="environment" source="spring.profiles.active" defaultValue="local" />
 
     <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
 
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- @formatter:off -->
-        <encoder>
-            <pattern>
-                %d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} level=%-5p {App: ${appName:-}, trace: %X{traceId:-}, span: %X{spanId:-}} logger=%c %line thread=%thread = %msg%n%n
-            </pattern>
-        </encoder>
-        <!-- @formatter:on -->
-    </appender>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
 
-    <appender name="JsonFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logDirectory}/${appName:-}.json.log</file>
+                <timestamp>
+                    <fieldName>timestamp</fieldName>
+                    <pattern>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</pattern>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
 
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${logDirectory}/${appName:-}.%d{yyyy-MM-dd}.%i.json.log
-            </fileNamePattern>
-            <maxFileSize>5MB</maxFileSize>
-            <maxHistory>365</maxHistory>
-            <totalSizeCap>200GB</totalSizeCap>
-        </rollingPolicy>
+                <logLevel>
+                    <fieldName>level</fieldName>
+                </logLevel>
 
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <customFields>
-                { "service":"${appName:-}",
-                "host":"${HOSTNAME:-unknown}",
-                "environment":"${spring.profiles.active:-default}"}
-            </customFields>
-            <includeMdc>true</includeMdc>
-            <mdcKeyFieldNames>
-                <traceId>traceId</traceId>
-                <spanId>spanId</spanId>
-            </mdcKeyFieldNames>
-            <includeContext>false</includeContext>
+                <message>
+                    <fieldName>message</fieldName>
+                </message>
+
+                <globalCustomFields>
+                    <customFields>
+                        {
+                        "application": "${appName:-unknown}",
+                        "version": "${appVersion:-unknown}",
+                        "environment": "${environment:-local}",
+                        "host": "${HOSTNAME:-unknown}"
+                        }
+                    </customFields>
+                </globalCustomFields>
+
+                <mdc>
+                    <includeMdcKeyName>traceId</includeMdcKeyName>
+                    <includeMdcKeyName>spanId</includeMdcKeyName>
+                    <includeMdcKeyName>parentSpanId</includeMdcKeyName>
+                    <includeMdcKeyName>sampled</includeMdcKeyName>
+                    <includeMdcKeyName>correlation_id</includeMdcKeyName>
+                    <includeMdcKeyName>log_type</includeMdcKeyName>
+                </mdc>
+
+                <callerData>
+                    <classFieldName>class</classFieldName>
+                    <methodFieldName>method</methodFieldName>
+                    <lineFieldName>line</lineFieldName>
+                </callerData>
+
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                    <shortenedLoggerNameLength>50</shortenedLoggerNameLength>
+                </loggerName>
+
+                <threadName>
+                    <fieldName>thread</fieldName>
+                </threadName>
+
+                <stackTrace>
+                    <fieldName>exception</fieldName>
+                    <throwableConverter
+                        class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <maxDepthPerCause>20</maxDepthPerCause>
+                        <rootCauseFirst>true</rootCauseFirst>
+                        <inlineHash>true</inlineHash>
+                    </throwableConverter>
+                </stackTrace>
+
+            </providers>
         </encoder>
     </appender>
 
     <root level="${APP_LOG_LEVEL:-INFO}">
         <appender-ref ref="Console" />
-        <appender-ref ref="JsonFile" />
     </root>
 </configuration>
