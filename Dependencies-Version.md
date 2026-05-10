@@ -36,10 +36,10 @@ https://central.sonatype.com/artifact/org.apache.maven.plugins/maven-resources-p
 
 # Docker Images
 
+https://hub.docker.com/r/grafana/promtail/tags
+https://hub.docker.com/r/grafana/loki/tags
 https://hub.docker.com/r/grafana/tempo/tags
 https://hub.docker.com/r/otel/opentelemetry-collector/tags
-https://hub.docker.com/r/grafana/loki/tags
-https://hub.docker.com/r/grafana/promtail/tags
 https://hub.docker.com/r/prom/prometheus/tags
 
 https://hub.docker.com/r/grafana/grafana/tags

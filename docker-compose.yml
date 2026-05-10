@@ -1,5 +1,4 @@
 volumes:
-  app-logs:
   mysql-data:
   redis-data:
   kafka-data:
@@ -12,93 +11,114 @@ x-base-service: &base-service
   restart: unless-stopped
   env_file:
     - .env
-  volumes:
-    - app-logs:/root/Apps/Cinemayan-Spring-Microservices/Logs/
   depends_on:
     - discovery-server
 
 services:
   discovery-server:
     <<: *base-service
-    image: arivanamin/cinemayan-discovery-server
-    container_name: Discovery-Server
+    image: arivanamin/cinemayan-discovery-server:latest
+    container_name: discovery-server
     ports:
       - "8761:8761"
+    labels:
+      logging: "promtail"
+      com.docker.compose.service: "discovery-server"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     depends_on: [ ]
 
   api-gateway:
     <<: *base-service
-    image: arivanamin/cinemayan-api-gateway
-    container_name: API-Gateway
+    image: arivanamin/cinemayan-api-gateway:latest
+    container_name: api-gateway
     ports:
       - "8080:8080"
+    labels:
+      logging: "promtail"
+      com.docker.compose.service: "api-gateway"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     depends_on:
       - redis
 
+  promtail:
+    image: grafana/promtail:3.6.9
+    container_name: promtail
+    restart: unless-stopped
+    command:
+      - -config.file=/etc/promtail/config.yaml
+    volumes:
+      - ./Docker/promtail/promtail-config.yaml:/etc/promtail/config.yaml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - loki
+  
+  loki:
+    image: grafana/loki:3.7.1
+    container_name: loki
+    restart: unless-stopped
+    command:
+      - -config.file=/etc/loki/config.yaml
+    ports:
+      - "3100:3100"
+    volumes:
+      - loki-data:/loki
+      - ./Docker/loki/loki-config.yaml:/etc/loki/config.yaml:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
   tempo:
     image: grafana/tempo:2.9.1
-    container_name: Tempo
+    container_name: tempo
     restart: unless-stopped
     command:
       - -config.file=/etc/tempo.yaml
     volumes:
-      - ./Docker/tempo/tempo.yml:/etc/tempo.yaml:ro
+      - ./Docker/tempo/tempo.yaml:/etc/tempo.yaml:ro
       - tempo-data:/var/tempo
     ports:
       - "3200:3200"
   
   otel:
     image: otel/opentelemetry-collector:0.150.1
-    container_name: Otel
+    container_name: otel
     restart: unless-stopped
     command:
       - --config=/etc/otel-collector-config.yaml
     volumes:
-      - ./Docker/otel/otel-config.yaml:/etc/otel-collector-config.yaml
+      - ./Docker/otel/otel-config.yaml:/etc/otel-collector-config.yaml:ro
     ports:
       - "4318:4318"
     depends_on:
       - tempo
 
-  loki:
-    image: grafana/loki:3.7.1
-    container_name: Loki
-    restart: unless-stopped
-    command:
-      - -config.file=/etc/loki/local-config.yaml
-    volumes:
-      - loki-data:/loki
-    ports:
-      - "3100:3100"
-
-  promtail:
-    image: grafana/promtail:3.6.9
-    container_name: Promtail
-    restart: unless-stopped
-    command:
-      - -config.file=/etc/promtail/config.yml
-    volumes:
-      - ./Docker/promtail/promtail-config.yaml:/etc/promtail/config.yml
-      - app-logs:/logs
-      - ${HOME}/Apps/Cinemayan-Spring-Microservices/Logs:/local-logs
 
   prometheus:
     image: prom/prometheus:v3.9.1
-    container_name: Prometheus
+    container_name: prometheus
     restart: unless-stopped
     command:
       - --enable-feature=exemplar-storage
-      - --config.file=/etc/prometheus/prometheus.yml
+      - --config.file=/etc/prometheus/prometheus.yaml
     volumes:
-      - ./Docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./Docker/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
       - prometheus-data:/prometheus
     ports:
       - "9090:9090"
 
-
   grafana:
     image: grafana/grafana:13.0.1
-    container_name: Grafana
+    container_name: grafana
     restart: unless-stopped
     volumes:
       - ./Docker/grafana:/etc/grafana/provisioning/datasources:ro
@@ -109,14 +129,16 @@ services:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
     ports:
       - "3000:3000"
+    depends_on:
+      - loki
 
   mysql:
     image: mysql:9.7.0
-    container_name: MySQL
+    container_name: mysql
     restart: unless-stopped
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./Docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./Docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     environment:
       MYSQL_ROOT_PASSWORD: mysql
     ports:
@@ -124,7 +146,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.2.3
-    container_name: PhpMyAdmin
+    container_name: phpmyadmin
     restart: unless-stopped
     environment:
       PMA_HOST: mysql
@@ -137,7 +159,7 @@ services:
 
   redis:
     image: redis:8.4.2
-    container_name: Redis-Server
+    container_name: redis-server
     restart: unless-stopped
     command:
       - redis-server
@@ -150,7 +172,7 @@ services:
 
   kafka:
     image: apache/kafka:4.2.0
-    container_name: Kafka
+    container_name: kafka
     restart: unless-stopped
     environment:
       - KAFKA_NODE_ID=1
@@ -175,10 +197,10 @@ services:
   ### Uncomment below if you want to start all services through docker compose 
 #  audit-service:
 #    <<: *base-service
-#    image: arivanamin/cinemayan-audit-service
-#    container_name: Audit-Service
+#    image: arivanamin/cinemayan-audit-service:latest
+#    container_name: audit-service
 #
 #  catalog-service:
 #    <<: *base-service
-#    image: arivanamin/cinemayan-catalog-service
-#    container_name: Catalog-Service
+#    image: arivanamin/cinemayan-catalog-service:latest
+#    container_name: catalog-service
