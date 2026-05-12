@@ -6,22 +6,37 @@ receivers:
       http:
         endpoint: 0.0.0.0:4318
 
+processors:
+  memory_limiter:
+    limit_mib: 256
+    check_interval: 1s
+  batch:
+    timeout: 5s
+    send_batch_size: 512
+
 exporters:
   otlp/tempo:
     endpoint: tempo:4317
     tls:
       insecure: true
-  
+    retry_on_failure:
+      enabled: true
+      initial_interval: 5s
+      max_elapsed_time: 60s
+    sending_queue:
+      enabled: true
+      num_consumers: 4
+      queue_size: 100
   prometheus:
     endpoint: 0.0.0.0:8889
-
 
 service:
   pipelines:
     traces:
       receivers: [ otlp ]
+      processors: [ memory_limiter, batch ]
       exporters: [ otlp/tempo ]
-    
     metrics:
       receivers: [ otlp ]
+      processors: [ memory_limiter, batch ]
       exporters: [ prometheus ]
