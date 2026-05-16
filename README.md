@@ -6,7 +6,8 @@ Cinemayan is a microservices backend application designed to provide detailed in
 
 - Movies
 - TV Series
-- Anime & Manga
+- Anime
+- Manga
 
 This codebase is designed for Java backend developers interested in a **Microservices** application
 following on **Clean Architecture** and **SOLID** principles, DDD, built with **Spring Boot 4**,
@@ -34,7 +35,6 @@ following on **Clean Architecture** and **SOLID** principles, DDD, built with **
 
 - Eureka Discovery Server
 - Spring Boot API Gateway
-- Audit Service
 
 ## In Progress:
 
@@ -70,7 +70,7 @@ following on **Clean Architecture** and **SOLID** principles, DDD, built with **
 - **Spring Dependency Injection**
 - **Aspect-Oriented Programming (AOP)**
 - **Rate Limiting API**
-- **Automatic Audit Logs recording**: Uses Spring AOP to store audit logs automatically.
+- **Automatic API Audit Logs**: Uses Spring AOP to capture and log API calls.
 - **Event-Driven Communication**: Using Kafka.
 - **Robust Monitoring**: Real-time monitoring with Grafana, Loki, and Tempo.
 - **Centralized Logging & Distributed Tracing**: Using Loki and Tempo.
@@ -105,15 +105,16 @@ In each service, there are 3 layers:
 
 - Spring beans, web classes live here.
 - It can access both previous layers since this is the most outward layer.
+- Controllers, beans, spring config and other web related classes belong here
 
 ---
 
 ## Notable Features
 
-### Automatic Audit Logs Recording
+### Automatic API Audit Logs
 
-Use Spring **AOP** to create Audit Events automatically whenever any API in any of the services is
-called and saved to persistence, allowing the controllers to be clutter-free.
+Use Spring **AOP** to capture and log API call details whenever any API in any of the services is
+called.
 
 ### Clean Restful API in all services
 
@@ -127,10 +128,6 @@ Command and Query Separation Principle to implement Business logic.
 ### Rate Limiting
 
 Implemented in **API Gateway** using **Redis Rate Limiter**.
-
-### Outbox Pattern
-
-Implements the Outbox Pattern for sending audit events to guarantee 100% message delivery.
 
 ### ArchUnit
 
@@ -170,16 +167,16 @@ Decouples core business logic from presentation using request and response POJO.
 
 Domain entities have no association with JPA and are never annotated with @Entity.
 
-## Sample audit log from Audit-Service captured from API calls in Student-Service
+## Sample audit event captured from API calls in Catalog-Service
 
 ```
-        // Create Student Endpoint
+        // Create Movie Endpoint
         {
             "id": "6797e0215829937787277607",
-            "serviceName": "student-service",
-            "location": "/students/protected/v1/accounts",
+            "serviceName": "catalog-service",
+            "location": "/catalogs/protected/v1/movies",
             "action": "Create",
-            "data": "CreateStudentRequest(firstName=Hayden, lastName=Ondricka, email=Helen21@gmail.com, dateOfBirth=977659882000, gender=MALE, address=Bernhard Cape)",
+            "data": "CreateMovieRequest(name=non stop)",
             "creationDate": "2025-01-27T14:36:01.528",
             "duration": "50ms",
             "response": "CreateStudentResponse(id=9622e5ef-5ab7-4faf-89db-7dd970ea8ef0)"
@@ -228,12 +225,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
    ```
    docker compose up -d
    ```
-5. **Start the services(Catalog, Audit, ...) manually or uncomment the section in docker compose
-   file
-   to run everything with Docker Compose:**
-   ```
-   docker compose up -d
-   ```
+5. **Start services (Catalog) from IDE or Maven**
 
 # Access the Services
 
@@ -255,7 +247,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
 
 ## Grafana Dashboard
 
-#### Import pre-built dashboard JSON configuration from the `docker/grafana/` folder
+#### Import pre-built dashboard JSON configuration from the `Docker/grafana/` folder
 
 [http://localhost:3000/dashboards](http://localhost:3000/dashboards)
 
@@ -275,10 +267,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
 - **Discovery Server**: Dynamic service discovery and registry.
 - **API Gateway**: Centralized entry point for routing and security.
 - **Core Module**: Shared utilities and functionality.
-- **Outbox Storage Module**: Contains classes related to outbox message storage, shared with
-  all the modules.
 - **Catalog Service**: Manages student data.
-- **Audit Service**: Stores Audit Events, ensures compliance, and data integrity.
 
 ---
 

@@ -5,6 +5,4 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
-    <include file="001-Outbox-LMS-8-create-audit-events-outbox-table.xml"
-             relativeToChangelogFile="true" />
 </databaseChangeLog>

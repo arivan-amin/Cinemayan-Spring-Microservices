@@ -32,22 +32,12 @@
         </dependency>
         <dependency>
             <groupId>com.cinemayan</groupId>
-            <artifactId>cinemayan-outbox</artifactId>
-            <version>${outbox-module-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.cinemayan</groupId>
             <artifactId>cinemayan-discovery-server</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.cinemayan</groupId>
             <artifactId>cinemayan-api-gateway</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.cinemayan</groupId>
-            <artifactId>cinemayan-audit-service</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>

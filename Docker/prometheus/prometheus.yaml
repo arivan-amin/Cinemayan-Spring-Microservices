@@ -22,16 +22,8 @@ scrape_configs:
           instance: 'Api-Gateway'
           application: 'Api-Gateway'
 
-  - job_name: 'audit-service'
-    metrics_path: '/actuator/audits/prometheus'
-    static_configs:
-      - targets: [ 'audit-service:8080' ]
-        labels:
-          instance: 'Audit-Service'
-          application: 'Audit-Service'
-
   - job_name: 'catalog-service'
-    metrics_path: '/actuator/catalogs/prometheus'
+    metrics_path: '/actuator/catalog/prometheus'
     static_configs:
       - targets: [ 'catalog-service:8080' ]
         labels:

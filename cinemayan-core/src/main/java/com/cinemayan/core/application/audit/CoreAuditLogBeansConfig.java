@@ -1,19 +1,8 @@
 package com.cinemayan.core.application.audit;
 
-import com.cinemayan.core.application.outbox.NoOpAuditOutboxMessageStorage;
-import com.cinemayan.core.domain.audit.AuditEvent;
-import com.cinemayan.core.domain.audit.AuditEventPublisher;
-import com.cinemayan.core.domain.command.create.CreateAuditOutboxMessageCommand;
-import com.cinemayan.core.domain.command.delete.DeleteCompletedAuditOutboxMessagesCommand;
-import com.cinemayan.core.domain.command.update.UpdateAuditOutboxMessageStatusCommand;
-import com.cinemayan.core.domain.outbox.AuditOutboxMessageStorage;
-import com.cinemayan.core.domain.query.readbyid.ReadAuditOutboxMessageByIdQuery;
-import com.cinemayan.core.domain.query.readbystatus.ReadAuditOutboxMessageByStatusQuery;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.core.KafkaTemplate;
 
 import java.time.Clock;
 
@@ -25,47 +14,5 @@ class CoreAuditLogBeansConfig {
         @Value ("${spring.application.name}") String serviceName, Clock clock,
         SensitiveDataMasker dataMasker) {
         return new AuditDataExtractor(serviceName, clock, dataMasker);
-    }
-
-    @Bean
-    public AuditEventPublisher auditEventPublisher (KafkaTemplate<String, AuditEvent> kafkaTemplate,
-                                                    UpdateAuditOutboxMessageStatusCommand command) {
-        return new KafkaAuditEventPublisher(kafkaTemplate, command);
-    }
-
-    @Bean
-    @ConditionalOnMissingBean (AuditOutboxMessageStorage.class)
-    public AuditOutboxMessageStorage dummyAuditEventStorage () {
-        return new NoOpAuditOutboxMessageStorage();
-    }
-
-    @Bean
-    public CreateAuditOutboxMessageCommand createAuditEventOutboxMessageCommand (
-        AuditOutboxMessageStorage storage) {
-        return new CreateAuditOutboxMessageCommand(storage);
-    }
-
-    @Bean
-    public ReadAuditOutboxMessageByStatusQuery readAuditOutboxMessageByStatusQuery (
-        AuditOutboxMessageStorage storage) {
-        return new ReadAuditOutboxMessageByStatusQuery(storage);
-    }
-
-    @Bean
-    public ReadAuditOutboxMessageByIdQuery readAuditOutboxMessageByIdQuery (
-        AuditOutboxMessageStorage storage) {
-        return new ReadAuditOutboxMessageByIdQuery(storage);
-    }
-
-    @Bean
-    public UpdateAuditOutboxMessageStatusCommand updateAuditOutboxMessageStatusCommand (
-        AuditOutboxMessageStorage storage) {
-        return new UpdateAuditOutboxMessageStatusCommand(storage);
-    }
-
-    @Bean
-    public DeleteCompletedAuditOutboxMessagesCommand deleteCompletedAuditOutboxMessagesCommand (
-        AuditOutboxMessageStorage storage) {
-        return new DeleteCompletedAuditOutboxMessagesCommand(storage);
     }
 }
