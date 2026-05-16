@@ -219,15 +219,28 @@ services:
   
   
   ### Uncomment below if you want to start all services through docker compose 
-  audit-service:
-    <<: *base-service
-    image: arivanamin/cinemayan-audit-service:latest
-    container_name: audit-service
-    environment:
-      - OPEN_TELEMETRY_HOST=otel
-      - KAFKA_BROKER_SERVER=kafka
+#  audit-service:
+#    <<: *base-service
+#    image: arivanamin/cinemayan-audit-service:latest
+#    container_name: audit-service
+#    labels:
+#      logging: "promtail"
+#      com.docker.compose.service: "audit-service"
+#    logging:
+#      driver: json-file
+#      options:
+#        max-size: "10m"
+#        max-file: "3"
 #
 #  catalog-service:
 #    <<: *base-service
 #    image: arivanamin/cinemayan-catalog-service:latest
 #    container_name: catalog-service
+#    labels:
+#      logging: "promtail"
+#      com.docker.compose.service: "catalog-service"
+#    logging:
+#      driver: json-file
+#      options:
+#        max-size: "10m"
+#        max-file: "3"
