@@ -49,7 +49,6 @@
         <!-- Inherited dependency versions -->
         <core-module-version>1.0.0</core-module-version>
         <testing-module-version>1.0.0</testing-module-version>
-        <outbox-module-version>1.0.0</outbox-module-version>
     </properties>
 
     <modules>
@@ -57,9 +56,7 @@
         <module>cinemayan-api-gateway</module>
         <module>cinemayan-core</module>
         <module>cinemayan-testing</module>
-        <module>cinemayan-outbox</module>
         <module>cinemayan-coverage</module>
-        <module>cinemayan-audit-service</module>
         <module>cinemayan-catalog-service</module>
     </modules>
 

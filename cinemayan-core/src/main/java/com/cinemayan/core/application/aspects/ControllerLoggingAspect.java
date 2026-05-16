@@ -2,8 +2,6 @@ package com.cinemayan.core.application.aspects;
 
 import com.cinemayan.core.application.audit.AuditDataExtractor;
 import com.cinemayan.core.domain.audit.AuditEvent;
-import com.cinemayan.core.domain.command.create.CreateAuditOutboxMessageCommand;
-import com.cinemayan.core.domain.command.create.CreateAuditOutboxMessageInput;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -22,7 +20,6 @@ import static com.cinemayan.core.domain.aspects.ExecutionWrapper.executeThrowabl
 @Slf4j
 class ControllerLoggingAspect {
 
-    private final CreateAuditOutboxMessageCommand command;
     private final AuditDataExtractor dataExtractor;
     private final Clock clock;
 
@@ -50,7 +47,7 @@ class ControllerLoggingAspect {
         finally {
             Duration duration = Duration.between(start, Instant.now());
             logExecutionDuration(joinPoint, duration);
-            extractAuditEventDetailsAndSaveToStorage(joinPoint, result, duration);
+            extractAuditEventDetailsAndLog(joinPoint, result, duration);
         }
 
         if (caughtException != null) {
@@ -69,10 +66,10 @@ class ControllerLoggingAspect {
         log.info("Execution of {} took {}ms", getMethodName(joinPoint), duration.toMillis());
     }
 
-    private void extractAuditEventDetailsAndSaveToStorage (ProceedingJoinPoint joinPoint,
-                                                           Object result, Duration duration) {
+    private void extractAuditEventDetailsAndLog (ProceedingJoinPoint joinPoint, Object result,
+                                                 Duration duration) {
         AuditEvent event = dataExtractor.extractAuditData(joinPoint, result, duration);
-        command.execute(new CreateAuditOutboxMessageInput(event));
+        log.info("Captured API AuditEvent = {}", event);
     }
 
     private String getMethodName (JoinPoint joinPoint) {

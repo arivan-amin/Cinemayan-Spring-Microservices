@@ -35,11 +35,6 @@
             <artifactId>cinemayan-testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.cinemayan</groupId>
-            <artifactId>cinemayan-outbox</artifactId>
-            <version>${outbox-module-version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

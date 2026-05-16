@@ -30,7 +30,7 @@ public class AuditDataExtractor {
         String parameters = maskMethodParameters(joinPoint);
         String response = getMethodReturnType(result);
 
-        AuditEvent event = AuditEvent.builder()
+        return AuditEvent.builder()
             .serviceName(serviceName)
             .location(requestURL)
             .action(requestAnnotation)
@@ -39,9 +39,6 @@ public class AuditDataExtractor {
             .duration(duration)
             .response(response)
             .build();
-
-        log.info("Created AuditEvent to be published = {}", event);
-        return event;
     }
 
     private String extractRequestUrl (Method method) {

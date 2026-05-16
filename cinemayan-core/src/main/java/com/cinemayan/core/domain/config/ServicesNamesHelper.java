@@ -7,5 +7,4 @@ import lombok.NoArgsConstructor;
 public final class ServicesNamesHelper {
 
     public static final String CATALOG_SERVICE = "catalog";
-    public static final String AUDIT_SERVICE = "audit";
 }

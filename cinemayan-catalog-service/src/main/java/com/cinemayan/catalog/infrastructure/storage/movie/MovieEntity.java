@@ -1,6 +1,5 @@
 package com.cinemayan.catalog.infrastructure.storage.movie;
 
-import com.cinemayan.outbox.infrastructure.audit.AuditFields;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
@@ -15,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString (callSuper = true)
-public class MovieEntity extends AuditFields {
+public class MovieEntity {
 
     @Id
     @UuidGenerator
