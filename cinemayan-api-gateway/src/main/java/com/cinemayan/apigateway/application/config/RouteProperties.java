@@ -9,9 +9,9 @@ import org.springframework.validation.annotation.Validated;
 import java.util.ArrayList;
 import java.util.List;
 
-@ConfigurationProperties (prefix = "cinemayan.api.gateway.service")
-@Validated
 @Value
+@Validated
+@ConfigurationProperties (prefix = "cinemayan.api.gateway.service")
 public class RouteProperties {
 
     @NotEmpty

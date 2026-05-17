@@ -38,7 +38,6 @@ class RoutingBeansConfig {
 
     @Bean
     public KeyResolver keyResolver () {
-        // todo 1/31/25 - later when security is added, keyResolver should depend on user ID
         return exchange -> Mono.just(requireNonNull(exchange.getRequest()
             .getRemoteAddress()).getAddress()
             .getHostAddress());

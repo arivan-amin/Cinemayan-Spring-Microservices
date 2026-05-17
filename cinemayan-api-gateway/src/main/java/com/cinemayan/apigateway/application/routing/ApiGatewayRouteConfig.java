@@ -58,6 +58,6 @@ class ApiGatewayRouteConfig {
     }
 
     private String getEurekaUrl () {
-        return "http://%s:%s".formatted(eurekaProperties.host(), eurekaProperties.port());
+        return "http://%s:%s".formatted(eurekaProperties.getHost(), eurekaProperties.getPort());
     }
 }
