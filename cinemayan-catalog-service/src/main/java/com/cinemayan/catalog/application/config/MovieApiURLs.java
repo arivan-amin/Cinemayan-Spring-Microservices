@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
 public final class MovieApiURLs {
 
-    public static final String PUBLIC_API = "/catalog/public";
-    public static final String PROTECTED_API = "/catalog/protected";
+    public static final String PUBLIC_API = "/catalogs/public";
+    public static final String PROTECTED_API = "/catalogs/protected";
 
     public static final String MOVIES = "/v1/movies";
     public static final String MOVIE_BY_ID = "/v1/movies/{id}";

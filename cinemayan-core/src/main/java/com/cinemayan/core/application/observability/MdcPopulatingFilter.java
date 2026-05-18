@@ -50,6 +50,6 @@ class MdcPopulatingFilter extends OncePerRequestFilter {
     private String resolveCorrelationId (HttpServletRequest request) {
         String fromHeader = request.getHeader(CORRELATION_ID_HEADER);
         return StringUtils.hasText(fromHeader) ? fromHeader : UUID.randomUUID()
-                                                              .toString();
+            .toString();
     }
 }
