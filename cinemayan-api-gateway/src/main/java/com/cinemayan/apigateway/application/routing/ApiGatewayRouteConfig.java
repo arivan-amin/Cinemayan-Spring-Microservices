@@ -26,11 +26,12 @@ class ApiGatewayRouteConfig {
     @Bean
     public RouteLocator routeLocator (RouteLocatorBuilder builder) {
         log.info("Service route Properties fetched from config file = {}", routeProperties);
+        log.info("EurekaProperties fetched from config file = {}", eurekaProperties);
         RouteLocatorBuilder.Builder routes = builder.routes()
             .route(getDiscoveryServerRoute())
             .route(getDiscoveryServerStaticResourcesRoute());
 
-        routeProperties.getRoutes()
+        routeProperties.routes()
             .forEach(service -> createRoutesForService(routes, service));
 
         return routes.build();

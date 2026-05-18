@@ -164,7 +164,7 @@ services:
 
   redis:
     image: redis:8.4.2-alpine
-    container_name: redis-server
+    container_name: redis
     restart: unless-stopped
     command:
       - redis-server

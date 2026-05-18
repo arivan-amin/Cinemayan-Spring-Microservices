@@ -17,7 +17,9 @@ public class CreateMovieCommand {
         return new Output(storage.create(student));
     }
 
-    public record Input(@NotNull Movie movie) {
+    public record Input(
+        @NotNull
+        Movie movie) {
 
     }
 
