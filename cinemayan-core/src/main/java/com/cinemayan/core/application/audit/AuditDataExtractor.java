@@ -36,7 +36,7 @@ public class AuditDataExtractor {
             .action(requestAnnotation)
             .data(parameters)
             .recordedAt(Instant.now(clock))
-            .duration(duration)
+            .duration("%sms".formatted(duration.toMillis()))
             .response(response)
             .build();
     }

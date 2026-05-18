@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 class SensitiveDataMasker {
 
-    private static final String MASK_VALUE = "***REDACTED***";
+    private static final String MASK_VALUE = "***MASKED***";
 
     private final AuditSensitiveProperties sensitiveProperties;
 
@@ -33,7 +33,7 @@ class SensitiveDataMasker {
     }
 
     private boolean isFieldNameInSensitiveProperties (String name) {
-        return sensitiveProperties.getFields()
+        return sensitiveProperties.fields()
             .stream()
             .anyMatch(sensitive -> sensitive.equalsIgnoreCase(name));
     }
