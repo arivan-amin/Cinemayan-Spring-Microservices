@@ -7,7 +7,7 @@ import org.hibernate.annotations.UuidGenerator;
 import java.util.UUID;
 
 @Entity
-@Table (name = "movies")
+@Table (schema = "catalog", name = "movies")
 @Getter
 @Setter
 @Builder

@@ -1,6 +1,6 @@
 package com.cinemayan.catalog.domain.content;
 
-public enum ProductionCompany {
+public enum Studio {
     WALT_DISNEY_PICTURES,
     TWENTIETH_CENTURY_STUDIOS,
     SEARCHLIGHT_PICTURES,
