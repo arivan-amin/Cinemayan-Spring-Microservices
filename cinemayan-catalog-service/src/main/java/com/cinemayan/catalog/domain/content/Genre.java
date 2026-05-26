@@ -1,0 +1,31 @@
+package com.cinemayan.catalog.domain.content;
+
+public enum Genre {
+    ACTION,
+    ADVENTURE,
+    COMEDY,
+    DRAMA,
+    FANTASY,
+    HORROR,
+    MYSTERY,
+    ROMANCE,
+    SCIENCE_FICTION,
+    THRILLER,
+    ANIMATION,
+    DOCUMENTARY,
+    BIOGRAPHY,
+    HISTORY,
+    MUSIC,
+    SPORT,
+    WAR,
+    WESTERN,
+    EASTERN,
+    CRIME,
+    FAMILY,
+    MUSICAL,
+    SUPERNATURAL,
+    PSYCHOLOGICAL,
+    SPORTS,
+    SCHOOL,
+    MILITARY
+}

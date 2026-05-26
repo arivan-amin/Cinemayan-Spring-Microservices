@@ -1,11 +1,27 @@
 package com.cinemayan.catalog.domain.movie.entity;
 
-import lombok.Value;
+import com.cinemayan.catalog.domain.content.*;
+import lombok.*;
 
-import java.util.UUID;
+import java.time.LocalDate;
+import java.util.*;
 
-@Value
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Movie {
 
-    UUID id;
+    private UUID id;
+    private String title;
+    private String synopsis;
+    private LocalDate releaseDate;
+    private int runtime;
+    private AgeRating ageRating;
+    private Set<Genre> genres;
+    private Set<ContentWarning> contentWarnings;
+    private Set<Studio> studios;
+    private List<Cast> cast;
+    private List<Crew> crew;
+    private String imdbId;
 }

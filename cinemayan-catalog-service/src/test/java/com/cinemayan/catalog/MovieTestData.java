@@ -10,16 +10,15 @@ import java.util.List;
 public final class MovieTestData {
 
     public static List<Movie> moviesList () {
-        return List.of(withEmail("clint.eastwood@example.com"),
-            withEmail("anne.hathaway@example.com"), withEmail("kate.wislet@example.com"));
+        return List.of(withTitle("Ice age"), withTitle("Non stop"), withTitle("Troy"));
     }
 
-    public static Movie withEmail (String email) {
-        Movie entity = new Movie(null);
+    public static Movie withTitle (String title) {
+        Movie entity = new Movie();
         return entity;
     }
 
-    public static Movie withDefaultEmail () {
-        return withEmail("emma.stone@example.com");
+    public static Movie withDefaultTitle () {
+        return withTitle("Gladiator");
     }
 }
