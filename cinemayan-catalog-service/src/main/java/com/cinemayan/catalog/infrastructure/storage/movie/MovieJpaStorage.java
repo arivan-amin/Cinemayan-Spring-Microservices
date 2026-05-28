@@ -16,7 +16,7 @@ import java.util.UUID;
 @Slf4j
 public class MovieJpaStorage implements MovieStorage {
 
-    private final MovieRepository repository;
+    // private final MovieRepository repository;
 
     @Transactional (readOnly = true)
     @Override
