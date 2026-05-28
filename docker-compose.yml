@@ -137,30 +137,30 @@ services:
       - tempo
       - prometheus
 
-  mysql:
+  catalog-mysql:
     image: mysql:9.7.0
-    container_name: mysql
+    container_name: catalog-mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: mysql
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./Docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./Docker/mysql/catalog.sql:/docker-entrypoint-initdb.d/init.sql:ro
     ports:
-      - "3306:3306"
+      - "53301:3306"
 
   phpmyadmin:
     image: phpmyadmin:5.2.3
     container_name: phpmyadmin
     restart: unless-stopped
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: catalog-mysql
       PMA_USER: root
       PMA_PASSWORD: mysql
     ports:
       - "9797:80"
     depends_on:
-      - mysql
+      - catalog-mysql
 
   redis:
     image: redis:8.4.2-alpine
