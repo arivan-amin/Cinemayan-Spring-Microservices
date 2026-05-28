@@ -1,6 +1,7 @@
 package com.cinemayan.catalog.domain.movie.entity;
 
 import com.cinemayan.catalog.domain.content.*;
+import com.cinemayan.catalog.domain.studio.entity.StudioId;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -20,7 +21,7 @@ public class Movie {
     private AgeRating ageRating;
     private Set<Genre> genres;
     private Set<ContentWarning> contentWarnings;
-    private Set<Studio> studios;
+    private Set<StudioId> studios;
     private List<Cast> cast;
     private List<Crew> crew;
     private String imdbId;

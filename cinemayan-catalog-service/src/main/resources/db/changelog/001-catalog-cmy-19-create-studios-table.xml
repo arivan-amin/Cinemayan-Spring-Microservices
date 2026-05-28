@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+
+    <changeSet id="catalog-cmy-19-create-studios-table" author="Arivan-Amin">
+        <createTable tableName="studios">
+            <column name="id" type="BINARY(16)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"
+                             uniqueConstraintName="uq_studios_name" />
+            </column>
+            <column name="country" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="founded_date" type="DATE">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="DATETIME">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="DATETIME">
+            </column>
+        </createTable>
+
+        <createIndex indexName="idx_studios_name" tableName="studios">
+            <column name="name" />
+        </createIndex>
+
+        <rollback>
+            <dropIndex indexName="idx_studios_name" tableName="studios" />
+            <dropTable tableName="studios" />
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
