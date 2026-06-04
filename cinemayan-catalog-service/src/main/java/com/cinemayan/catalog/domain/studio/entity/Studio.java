@@ -13,5 +13,5 @@ public class Studio {
     private StudioId id;
     private String name;
     private String country;
-    private LocalDate FoundedDate;
+    private LocalDate foundedDate;
 }

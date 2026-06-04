@@ -6,7 +6,6 @@ import lombok.Value;
 @Value
 public class PaginationCriteria {
 
-    // todo 1/26/26 - max size pe page should be configurable
     public static final int MAX_SIZE = 50;
 
     @NotNull
@@ -18,7 +17,14 @@ public class PaginationCriteria {
     @Max (MAX_SIZE)
     int size;
 
-    public static PaginationCriteria of (int page, int size) {
-        return new PaginationCriteria(page, size);
+    @NotBlank
+    String sortField;
+
+    @NotNull
+    Direction sortDirection;
+
+    public static PaginationCriteria of (int page, int size, String sortField,
+                                         Direction sortDirection) {
+        return new PaginationCriteria(page, size, sortField, sortDirection);
     }
 }
