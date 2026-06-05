@@ -1,6 +1,6 @@
-package com.cinemayan.catalog.application.request;
+package com.cinemayan.catalog.application.request.studio;
 
-import com.cinemayan.catalog.domain.studio.command.create.CreateStudioCommand;
+import com.cinemayan.catalog.domain.studio.command.CreateStudioCommand;
 import com.cinemayan.catalog.domain.studio.entity.Studio;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;

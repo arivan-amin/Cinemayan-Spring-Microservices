@@ -17,11 +17,13 @@ class CatalogLiquibaseBeanConfig {
     @Bean
     public SpringLiquibase liquibase (CatalogLiquibaseProperties properties) {
         log.info("Initializing Catalog Liquibase Bean");
+
         DataSource liquibaseDataSource = DataSourceBuilder.create()
             .url(properties.url())
             .username(properties.username())
             .password(properties.password())
             .build();
+
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setDataSource(liquibaseDataSource);
         liquibase.setChangeLog(LIQUIBASE_CHANGELOG_PATH);

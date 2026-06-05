@@ -39,13 +39,13 @@ public class MovieJpaStorage implements MovieStorage {
 
     @Transactional
     @Override
-    public UUID create (Movie student) {
+    public UUID create (Movie movie) {
         return null;
     }
 
     @Transactional
     @Override
-    public void update (Movie updatedStudent) {
+    public void update (Movie movie) {
     }
 
     @Transactional

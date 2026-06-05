@@ -10,8 +10,6 @@ public class MovieSearchCriteria {
 
     String searchQuery;
     Gender gender;
-    // List<StudentStatus> statuses;
-    // List<GradeLevel> gradeLevels;
     Instant startDate;
     Instant endDate;
 }

@@ -13,7 +13,7 @@ import java.util.*;
 
 @RequiredArgsConstructor
 @Slf4j
-public class JpaStudioStorage implements StudioStorage {
+public class StudioJpaStorage implements StudioStorage {
 
     private static final String DEFAULT_SORT_FIELD = "foundedDate";
 
@@ -30,7 +30,7 @@ public class JpaStudioStorage implements StudioStorage {
 
         Page<StudioEntity> resultPage = repository.findAll(specification, pageable);
 
-        List<Studio> studios = mapToDomainList(resultPage.getContent());
+        List<Studio> studios = mapEntitiesToDomain(resultPage.getContent());
         PageData pageData = extractPageData(resultPage);
 
         log.info("Found {} studios out of {} total", studios.size(), resultPage.getTotalElements());
@@ -48,7 +48,7 @@ public class JpaStudioStorage implements StudioStorage {
         return PageRequest.of(criteria.getPage(), criteria.getSize(), sort);
     }
 
-    private static List<Studio> mapToDomainList (List<StudioEntity> entities) {
+    private static List<Studio> mapEntitiesToDomain (List<StudioEntity> entities) {
         return entities.stream()
             .map(StudioMapper::toDomain)
             .toList();
