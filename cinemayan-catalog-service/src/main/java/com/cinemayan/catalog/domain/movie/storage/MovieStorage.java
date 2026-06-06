@@ -15,9 +15,9 @@ public interface MovieStorage {
 
     Optional<Movie> findByTitle (String title);
 
-    UUID create (Movie student);
+    UUID create (Movie movie);
 
-    void update (Movie student);
+    void update (Movie movie);
 
     void delete (UUID id);
 }

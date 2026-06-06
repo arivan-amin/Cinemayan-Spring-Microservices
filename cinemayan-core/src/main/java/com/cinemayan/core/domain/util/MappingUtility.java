@@ -20,4 +20,10 @@ public final class MappingUtility {
             .map(mapper)
             .orElse(defaultValue);
     }
+
+    public static <T> T getIdOrNull (DomainId<T> id) {
+        return Optional.ofNullable(id)
+            .map(DomainId::getValue)
+            .orElse(null);
+    }
 }

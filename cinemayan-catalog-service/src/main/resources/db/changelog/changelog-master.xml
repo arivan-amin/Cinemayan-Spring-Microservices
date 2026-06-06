@@ -5,4 +5,6 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
+    <include file="001-catalog-cmy-19-create-studios-table.xml"
+             relativeToChangelogFile="true" />
 </databaseChangeLog>

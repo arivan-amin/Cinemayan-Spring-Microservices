@@ -146,10 +146,10 @@ Example of API response for every error.
 ```
 {
     "type": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/RuntimeException.html",
-    "title": "Requested Student Not Found",
+    "title": "Requested Studio Not Found",
     "status": 404,
-    "detail": "Student by the requested id not found",
-    "instance": "/students/protected/v1/accounts/33bff7c7-77ee-4c51-9ee0-c870b437f82e",
+    "detail": "Studio by the requested id not found",
+    "instance": "/catalog/protected/v1/studios/33bff7c7-77ee-4c51-9ee0-c870b437f82e",
     "category": "Resource Not Found",
     "timestamp": "2025-04-22T18:45:43.927431130Z"
 }
@@ -179,7 +179,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
             "data": "CreateMovieRequest(name=non stop)",
             "creationDate": "2025-01-27T14:36:01.528",
             "duration": "50ms",
-            "response": "CreateStudentResponse(id=9622e5ef-5ab7-4faf-89db-7dd970ea8ef0)"
+            "response": "CreateStudioResponse(id=9622e5ef-5ab7-4faf-89db-7dd970ea8ef0)"
         }
 ```
 
@@ -267,7 +267,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
 - **Discovery Server**: Dynamic service discovery and registry.
 - **API Gateway**: Centralized entry point for routing and security.
 - **Core Module**: Shared utilities and functionality.
-- **Catalog Service**: Manages student data.
+- **Catalog Service**: Manages Movie, Series, Anime, Manga, Studio data.
 
 ---
 
