@@ -22,8 +22,8 @@ public class CreateStudioRequest {
 
     public CreateStudioCommand.Input toInput () {
         Studio studio = new Studio();
-        studio.setName(name);
-        studio.setCountry(country);
+        studio.setName(name.trim());
+        studio.setCountry(country.trim());
         studio.setFoundedDate(foundedDate);
         return new CreateStudioCommand.Input(studio);
     }

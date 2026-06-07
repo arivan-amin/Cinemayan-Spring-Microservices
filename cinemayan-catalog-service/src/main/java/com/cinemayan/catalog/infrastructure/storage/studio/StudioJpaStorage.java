@@ -23,17 +23,16 @@ public class StudioJpaStorage implements StudioStorage {
     @Override
     public PaginatedResponse<Studio> findAll (GetStudiosParams params,
                                               PaginationCriteria criteria) {
-        log.info("Fetching studios with params={}, criteria={}", params, criteria);
+        log.debug("Fetching studios with params = {}, criteria = {}", params, criteria);
 
         StudioSpecification specification = buildSpecification(params);
         PageRequest pageable = buildPageRequest(criteria);
+        log.debug("Created specification = {}, pageable = {}", specification, pageable);
 
         Page<StudioEntity> resultPage = repository.findAll(specification, pageable);
-
         List<Studio> studios = mapEntitiesToDomain(resultPage.getContent());
         PageData pageData = extractPageData(resultPage);
-
-        log.info("Found {} studios out of {} total", studios.size(), resultPage.getTotalElements());
+        log.info("Found {} studios out of {} total", studios.size(), pageData.totalElements());
 
         return PaginatedResponse.of(pageData, studios);
     }
@@ -90,6 +89,7 @@ public class StudioJpaStorage implements StudioStorage {
     @Transactional (readOnly = true)
     @Override
     public Optional<Studio> findByName (String name) {
+        log.info("Finding studio by name = {}", name);
         return repository.findByName(name)
             .map(StudioMapper::toDomain);
     }
