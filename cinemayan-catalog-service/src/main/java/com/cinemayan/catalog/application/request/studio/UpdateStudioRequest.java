@@ -3,7 +3,8 @@ package com.cinemayan.catalog.application.request.studio;
 import com.cinemayan.catalog.domain.studio.command.UpdateStudioCommand;
 import com.cinemayan.catalog.domain.studio.entity.Studio;
 import com.cinemayan.catalog.domain.studio.entity.StudioId;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import lombok.Value;
 
 import java.time.LocalDate;
@@ -12,7 +13,6 @@ import java.util.UUID;
 @Value
 public class UpdateStudioRequest {
 
-    @NotNull
     UUID id;
 
     @NotBlank
