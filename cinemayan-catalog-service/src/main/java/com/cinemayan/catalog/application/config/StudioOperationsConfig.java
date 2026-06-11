@@ -1,4 +1,4 @@
-package com.cinemayan.catalog.application.beans;
+package com.cinemayan.catalog.application.config;
 
 import com.cinemayan.catalog.domain.studio.command.*;
 import com.cinemayan.catalog.domain.studio.persistence.StudioStorage;

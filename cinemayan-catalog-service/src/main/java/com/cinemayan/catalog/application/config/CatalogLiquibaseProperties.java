@@ -1,4 +1,4 @@
-package com.cinemayan.catalog.application.beans;
+package com.cinemayan.catalog.application.config;
 
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.boot.context.properties.ConfigurationProperties;

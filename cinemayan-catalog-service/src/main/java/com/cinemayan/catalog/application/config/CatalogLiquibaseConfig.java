@@ -1,4 +1,4 @@
-package com.cinemayan.catalog.application.beans;
+package com.cinemayan.catalog.application.config;
 
 import liquibase.integration.spring.SpringLiquibase;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,7 @@ import static com.cinemayan.core.domain.config.CoreApplicationConfig.LIQUIBASE_C
 
 @Configuration
 @Slf4j
-class CatalogLiquibaseBeanConfig {
+class CatalogLiquibaseConfig {
 
     @Bean
     public SpringLiquibase liquibase (CatalogLiquibaseProperties properties) {
