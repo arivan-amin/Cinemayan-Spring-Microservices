@@ -12,7 +12,7 @@ https://central.sonatype.com/artifact/com.tngtech.archunit/archunit-junit5
 https://central.sonatype.com/artifact/com.github.ben-manes.caffeine/caffeine
 
 https://central.sonatype.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
-https://central.sonatype.com/artifact/com.google.guava/guava
+https://central.sonatype.com/artifact/org.apache.commons/commons-lang3
 https://central.sonatype.com/artifact/commons-io/commons-io
 https://central.sonatype.com/artifact/com.mysql/mysql-connector-j
 

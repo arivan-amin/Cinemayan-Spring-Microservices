@@ -49,7 +49,7 @@ services:
       - redis
 
   promtail:
-    image: grafana/promtail:3.6.9
+    image: grafana/promtail:3.6.11
     container_name: promtail
     restart: unless-stopped
     command:
@@ -61,7 +61,7 @@ services:
       - loki
   
   loki:
-    image: grafana/loki:3.7.1
+    image: grafana/loki:3.7.2
     container_name: loki
     restart: unless-stopped
     command:
@@ -78,7 +78,7 @@ services:
         max-file: "3"
 
   tempo:
-    image: grafana/tempo:2.9.1
+    image: grafana/tempo:3.0.2
     container_name: tempo
     restart: unless-stopped
     command:
@@ -90,7 +90,7 @@ services:
       - "3200:3200"
 
   otel:
-    image: otel/opentelemetry-collector:0.150.1
+    image: otel/opentelemetry-collector:0.154.0
     container_name: otel
     restart: unless-stopped
     command:
@@ -104,7 +104,7 @@ services:
       - tempo
 
   prometheus:
-    image: prom/prometheus:v3.9.1
+    image: prom/prometheus:v3.12.0
     container_name: prometheus
     restart: unless-stopped
     command:
@@ -120,7 +120,7 @@ services:
       - otel
 
   grafana:
-    image: grafana/grafana:13.0.1
+    image: grafana/grafana:13.0.2
     container_name: grafana
     restart: unless-stopped
     volumes:
@@ -163,7 +163,7 @@ services:
       - catalog-mysql
 
   redis:
-    image: redis:8.4.2-alpine
+    image: redis:8.4.3-alpine
     container_name: redis
     restart: unless-stopped
     command:
@@ -193,7 +193,7 @@ services:
       - "6379:6379"
 
   kafka:
-    image: apache/kafka:4.2.0
+    image: apache/kafka:4.3.0
     container_name: kafka
     restart: unless-stopped
     environment:
