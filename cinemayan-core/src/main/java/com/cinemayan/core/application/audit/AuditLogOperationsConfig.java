@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import java.time.Clock;
 
 @Configuration
-class CoreAuditLogBeansConfig {
+class AuditLogOperationsConfig {
 
     @Bean
     public AuditDataExtractor auditDataExtractor (

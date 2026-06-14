@@ -17,10 +17,7 @@ public class PaginationCriteria {
     @Max (MAX_SIZE)
     int size;
 
-    @NotBlank
     String sortField;
-
-    @NotNull
     Direction sortDirection;
 
     public static PaginationCriteria of (int page, int size, String sortField,

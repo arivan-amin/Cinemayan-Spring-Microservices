@@ -61,7 +61,7 @@ public final class ServerControllerAdvices {
         return factory.build(ProblemDetailParams.builder()
             .status(INTERNAL_SERVER_ERROR)
             .title("Unhandled Exception")
-            .detail("Unhandled internal exception occurred: %s".formatted(exception.getMessage()))
+            .detail("Unhandled exception: %s".formatted(exception.getMessage()))
             .category(INTERNAL_ERROR)
             .docUrl(EXCEPTION_URL)
             .build());
