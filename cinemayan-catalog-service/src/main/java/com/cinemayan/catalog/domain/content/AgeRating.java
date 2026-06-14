@@ -3,6 +3,7 @@ package com.cinemayan.catalog.domain.content;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@SuppressWarnings ("PMD.ShortVariable")
 @Getter
 @AllArgsConstructor
 public enum AgeRating {

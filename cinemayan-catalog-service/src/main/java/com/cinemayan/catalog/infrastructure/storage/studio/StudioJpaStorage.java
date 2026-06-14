@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
+@SuppressWarnings ("PMD.TooManyMethods")
 @RequiredArgsConstructor
 @Slf4j
 public class StudioJpaStorage implements StudioStorage {

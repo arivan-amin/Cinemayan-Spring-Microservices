@@ -8,7 +8,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.kafka.KafkaContainer;
 
-@SuppressWarnings ({ "NewClassNamingConvention", "AbstractClassWithoutAbstractMethods" })
+@SuppressWarnings ({ "AbstractClassWithoutAbstractMethods" })
 @SpringBootTest
 @ExtendWith (SpringExtension.class)
 public abstract class BaseIntegrationTest implements BaseUnitTest {
@@ -16,14 +16,14 @@ public abstract class BaseIntegrationTest implements BaseUnitTest {
     public static final String DISABLED_EUREKA_CONFIG_VALUE = "false";
 
     @Container
-    static final KafkaContainer KAFKA_CONTAINER = new KafkaContainer("apache/kafka:4.1.0");
+    static final KafkaContainer KAFKA_CONTAINER = new KafkaContainer("apache/kafka:4.3.0");
 
     static {
         KAFKA_CONTAINER.start();
     }
 
     @DynamicPropertySource
-    static void registerProperties (DynamicPropertyRegistry registry) {
+    static void registerKafkaAndEurekaProperties (DynamicPropertyRegistry registry) {
         registry.add("spring.kafka.producer.bootstrap-servers",
             KAFKA_CONTAINER::getBootstrapServers);
         registry.add("spring.kafka.consumer.bootstrap-servers",
