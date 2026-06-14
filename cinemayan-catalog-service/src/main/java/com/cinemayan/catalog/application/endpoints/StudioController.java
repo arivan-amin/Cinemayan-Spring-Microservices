@@ -1,11 +1,11 @@
 package com.cinemayan.catalog.application.endpoints;
 
-import com.cinemayan.catalog.application.config.StudioApiURLs;
-import com.cinemayan.catalog.application.config.StudioCaches;
+import com.cinemayan.catalog.application.config.cache.StudioCaches;
 import com.cinemayan.catalog.application.request.studio.CreateStudioRequest;
 import com.cinemayan.catalog.application.request.studio.UpdateStudioRequest;
 import com.cinemayan.catalog.application.response.GetStudiosResponse;
 import com.cinemayan.catalog.application.response.StudioResponse;
+import com.cinemayan.catalog.application.urls.StudioApiURLs;
 import com.cinemayan.catalog.domain.studio.command.*;
 import com.cinemayan.catalog.domain.studio.persistence.GetStudiosParams;
 import com.cinemayan.catalog.domain.studio.query.GetStudioByIdQuery;

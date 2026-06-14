@@ -1,4 +1,4 @@
-package com.cinemayan.catalog.application.config;
+package com.cinemayan.catalog.application.config.liquibase;
 
 import liquibase.integration.spring.SpringLiquibase;
 import lombok.extern.slf4j.Slf4j;

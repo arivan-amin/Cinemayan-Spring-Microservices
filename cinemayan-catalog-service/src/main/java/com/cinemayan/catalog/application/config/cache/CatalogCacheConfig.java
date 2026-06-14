@@ -1,4 +1,4 @@
-package com.cinemayan.catalog.application.config;
+package com.cinemayan.catalog.application.config.cache;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.cache.CacheManager;
@@ -11,15 +11,15 @@ import java.time.Duration;
 
 @Configuration
 @EnableCaching
-class CacheConfig {
+class CatalogCacheConfig {
 
     @Bean
-    public CacheManager movieCacheManager () {
+    public CacheManager catalogCacheManager () {
         CaffeineCacheManager manager =
             new CaffeineCacheManager(MovieCaches.GET_ALL_MOVIES, MovieCaches.GET_MOVIE_BY_ID,
                 StudioCaches.GET_ALL_STUDIOS, StudioCaches.GET_STUDIO_BY_ID);
         manager.setCaffeine(Caffeine.newBuilder()
-            .expireAfterWrite(Duration.ofMinutes(10))
+            .expireAfterWrite(Duration.ofMinutes(5))
             .maximumSize(500));
         return manager;
     }

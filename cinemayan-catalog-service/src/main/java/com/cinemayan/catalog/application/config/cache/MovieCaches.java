@@ -1,4 +1,4 @@
-package com.cinemayan.catalog.application.config;
+package com.cinemayan.catalog.application.config.cache;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
