@@ -11,14 +11,6 @@ distributor:
         grpc:
           endpoint: 0.0.0.0:4317
 
-ingester:
-  max_block_duration: 5m
-  trace_idle_period: 10s
-
-compactor:
-  compaction:
-    block_retention: 2160h
-
 storage:
   trace:
     backend: local
@@ -26,6 +18,8 @@ storage:
       path: /var/tempo/wal
     local:
       path: /var/tempo/blocks
+    block:
+      version: vParquet5
 
 metrics_generator:
   registry:
@@ -33,8 +27,6 @@ metrics_generator:
       source: tempo
   storage:
     path: /var/tempo/generator/wal
-  traces_storage:
-    path: /var/tempo/generator/traces
 
 overrides:
   defaults:
