@@ -49,12 +49,19 @@ class ApiGatewayRouteConfig {
     }
 
     private void createRoutesForService (RouteLocatorBuilder.Builder routes, ServiceRoute service) {
-        routes.route(routeCreator.createApiRoute(service));
+        String serviceKey = service.getName()
+            .toLowerCase();
+        String apiRouteId = "%s-api".formatted(serviceKey);
+        String apiDocRouteId = "%s-api-doc".formatted(serviceKey);
+        String actuatorRouteId = "%s-actuator".formatted(serviceKey);
+
+        routes.route(apiRouteId, routeCreator.createApiRoute(service));
+
         if (service.isApiDocEnabled()) {
-            routes.route(routeCreator.createApiDocRoute(service));
+            routes.route(apiDocRouteId, routeCreator.createApiDocRoute(service));
         }
         if (service.isActuatorEnabled()) {
-            routes.route(routeCreator.createActuatorRoute(service));
+            routes.route(actuatorRouteId, routeCreator.createActuatorRoute(service));
         }
     }
 

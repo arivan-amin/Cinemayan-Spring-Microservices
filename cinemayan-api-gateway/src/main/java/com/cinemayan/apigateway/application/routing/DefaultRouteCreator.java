@@ -16,14 +16,8 @@ import java.util.function.Function;
 public class DefaultRouteCreator implements RouteCreator {
 
     private static final String LOAD_BALANCED_URI_TEMPLATE = "lb://%s-service";
-
-    private static final String API_ROUTE_ID = "%s-service-api";
     private static final String API_ROUTE_PATH = "/%s/**";
-
-    private static final String API_DOC_ROUTE_ID = "%s-service-api-doc";
     private static final String API_DOC_ROUTE_PATH = "/%s-service/api-docs";
-
-    private static final String ACTUATOR_ROUTE_ID = "%s-service-actuator";
     private static final String ACTUATOR_ROUTE_PATH = "/actuator/%s/**";
 
     private final RedisRateLimiter rateLimiter;
@@ -65,11 +59,9 @@ public class DefaultRouteCreator implements RouteCreator {
     public Function<PredicateSpec, Buildable<Route>> createActuatorRoute (ServiceRoute service) {
         log.info("creating actuator route for service = {}", service);
         String formattedPath = ACTUATOR_ROUTE_PATH.formatted(service.getName());
-        String serviceNameRegex = "/actuator/%s/(?<segment>.*)".formatted(service.getName());
-        String redirectPath = "/actuator/${segment}";
+        log.info("formatted actuator route path = {}", formattedPath);
 
         return r -> r.path(formattedPath)
-            .filters(filter -> filter.rewritePath(serviceNameRegex, redirectPath))
             .uri(createLoadBalancedUri(service));
     }
 }
