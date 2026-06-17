@@ -12,6 +12,7 @@ import org.springframework.cloud.gateway.route.builder.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Locale;
 import java.util.function.Function;
 
 @Configuration
@@ -50,7 +51,7 @@ class ApiGatewayRouteConfig {
 
     private void createRoutesForService (RouteLocatorBuilder.Builder routes, ServiceRoute service) {
         String serviceKey = service.getName()
-            .toLowerCase();
+            .toLowerCase(Locale.ENGLISH);
         String apiRouteId = "%s-api".formatted(serviceKey);
         String apiDocRouteId = "%s-api-doc".formatted(serviceKey);
         String actuatorRouteId = "%s-actuator".formatted(serviceKey);
