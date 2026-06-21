@@ -2,6 +2,7 @@ package com.cinemayan.testing.architecture.rules;
 
 import com.cinemayan.testing.architecture.bases.BaseIntegrationTest;
 import com.cinemayan.testing.architecture.bases.BaseUnitTest;
+import com.cinemayan.testing.architecture.rules.predicates.TestMethodNamingArchCondition;
 import com.tngtech.archunit.core.domain.JavaModifier;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
@@ -64,4 +65,19 @@ public interface TestingBestPracticeRules extends BaseUnitTest {
         .should()
         .resideOutsideOfPackage(DOMAIN_PACKAGE)
         .allowEmptyShould(true);
+
+    @ArchTest
+    ArchRule UNIT_AND_INTEGRATION_TEST_METHODS_SHOULD_FOLLOW_NAMING_CONVENTION = methods().that()
+        .areDeclaredInClassesThat()
+        .haveSimpleNameEndingWith(TEST_SUFFIX)
+        .and()
+        .areAnnotatedWith(Test.class)
+        .or()
+        .areDeclaredInClassesThat()
+        .haveSimpleNameEndingWith(INTEGRATION_TEST_SUFFIX)
+        .and()
+        .areAnnotatedWith(Test.class)
+        .should(new TestMethodNamingArchCondition())
+        .because("Test method names must follow the pattern: " +
+            "methodBeingTested_should{ExpectedBehavior}_when{Condition}");
 }

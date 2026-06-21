@@ -8,9 +8,9 @@ public class StaticMethodArchCondition extends ArchCondition<JavaClass> {
 
     private final String apiResponseMethodName;
 
-    public StaticMethodArchCondition (String apiResponseMethodName) {
+    public StaticMethodArchCondition (String methodName) {
         super("have a static method named 'of'");
-        this.apiResponseMethodName = apiResponseMethodName;
+        apiResponseMethodName = methodName;
     }
 
     @Override
