@@ -88,7 +88,7 @@ class StudioController {
         return StudioResponse.of(output.getStudio());
     }
 
-    @DeleteMapping (StudioApiURLs.UPDATE_STUDIO_URL)
+    @DeleteMapping (StudioApiURLs.DELETE_STUDIO_URL)
     @Operation (summary = "Deletes a studio")
     @CacheEvict (cacheNames = { StudioCaches.GET_ALL_STUDIOS, StudioCaches.GET_STUDIO_BY_ID },
         allEntries = true)

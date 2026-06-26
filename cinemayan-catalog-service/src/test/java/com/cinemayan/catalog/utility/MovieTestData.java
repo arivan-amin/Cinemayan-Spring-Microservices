@@ -1,4 +1,4 @@
-package com.cinemayan.catalog;
+package com.cinemayan.catalog.utility;
 
 import com.cinemayan.catalog.domain.movie.entity.Movie;
 import lombok.AccessLevel;

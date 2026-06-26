@@ -22,7 +22,7 @@ class CatalogOpenApiConfig {
 
     @Bean
     public OpenAPI myOpenAPI () {
-        log.info("OpenApiServerProperties fetched from config file = {}", serverProperties);
+        log.info("Catalog OpenApiServerProperties fetched from config file = {}", serverProperties);
         Server server = new Server();
         server.setUrl(serverProperties.url());
         server.setDescription("Server URL");
