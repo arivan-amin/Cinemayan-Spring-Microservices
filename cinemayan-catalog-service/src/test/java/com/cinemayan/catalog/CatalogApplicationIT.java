@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class CatalogApplicationIT extends BaseDatabaseTest {
 
     @Test
-    void shouldInitializeContextAndStartup () {
+    void main_shouldInitializeContext_whenAppIsRun () {
         // given
 
         // when

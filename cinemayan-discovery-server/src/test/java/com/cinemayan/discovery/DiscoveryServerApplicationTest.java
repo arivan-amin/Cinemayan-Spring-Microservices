@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class DiscoveryServerApplicationTest implements BaseUnitTest {
 
     @Test
-    void test () {
+    void main_shouldStartWithoutError_whenAppIsRun () {
         // given
 
         // when

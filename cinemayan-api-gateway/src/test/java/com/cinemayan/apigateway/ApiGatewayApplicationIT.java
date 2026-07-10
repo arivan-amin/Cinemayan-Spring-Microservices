@@ -1,4 +1,4 @@
-package com.cinemayan.apigateway.application;
+package com.cinemayan.apigateway;
 
 import com.cinemayan.testing.architecture.bases.BaseIntegrationTest;
 import lombok.extern.slf4j.Slf4j;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class ApiGatewayApplicationIT extends BaseIntegrationTest {
 
     @Test
-    void shouldInitializeContextAndStartup () {
+    void main_shouldInitializeContext_whenAppIsRun () {
         // given
 
         // when
