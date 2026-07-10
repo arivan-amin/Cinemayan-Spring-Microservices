@@ -19,6 +19,7 @@ public class CreateStudioCommand {
             log.warn("Studio creation rejected, name already exists: name = {}", studio.getName());
             throw new StudioAlreadyExistsException(studio.getName());
         }
+
         Studio savedStudio = storage.create(studio);
         log.info("Successfully saved studio = {}", savedStudio);
         return new Output(savedStudio);

@@ -13,11 +13,11 @@ import java.util.UUID;
 public final class StudioTestData {
 
     public static List<Studio> studiosList () {
-        return List.of(withNameAndNoId("20th Century Studios"),
-            withNameAndNoId("Warner Bros. Pictures"), withNameAndNoId("New Line Cinema"));
+        return List.of(withName("20th Century Studios"), withName("Warner Bros. Pictures"),
+            withName("New Line Cinema"));
     }
 
-    public static Studio withNameAndNoId (String name) {
+    public static Studio withName (String name) {
         Studio studio = new Studio();
         studio.setId(StudioId.of(UUID.randomUUID()));
         studio.setName(name);
@@ -26,13 +26,7 @@ public final class StudioTestData {
         return studio;
     }
 
-    public static Studio withNameAndRandomId (String name) {
-        Studio studio = withNameAndNoId(name);
-        studio.setId(StudioId.of(UUID.randomUUID()));
-        return studio;
-    }
-
-    public static Studio withDefaultNameAndNoId () {
-        return withNameAndNoId("Universal Pictures");
+    public static Studio withDefaultName () {
+        return withName("Universal Pictures");
     }
 }
