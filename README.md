@@ -18,7 +18,7 @@ following on **Clean Architecture** and **SOLID** principles, DDD, built with **
 ## Quick Info
 
 ![Java](https://img.shields.io/badge/java-25-brightgreen)
-![SpringBoot](https://img.shields.io/badge/spring--boot-4.0.6-brightgreen)
+![SpringBoot](https://img.shields.io/badge/spring--boot-4.1.0-brightgreen)
 ![Maven](https://img.shields.io/badge/Maven-3.9.13-blue)
 
 ![Coverage](https://img.shields.io/badge/jacoco%20coverage-75%25-yellow)
@@ -44,7 +44,7 @@ following on **Clean Architecture** and **SOLID** principles, DDD, built with **
 
 - **Java 25**
 - **Spring Boot 4**
-- **Spring Cloud 2025.1**
+- **Spring Cloud 2025.1.2**
 - **MySQL 9.7**: Services data storage.
 - **Kafka 4.1**: Event streaming for microservices.
 - **Docker**

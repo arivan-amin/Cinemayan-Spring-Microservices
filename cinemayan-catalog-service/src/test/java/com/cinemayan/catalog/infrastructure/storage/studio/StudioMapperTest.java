@@ -36,7 +36,7 @@ class StudioMapperTest implements BaseUnitTest {
         // given
         StudioEntity entity = StudioMapper.fromDomain(StudioTestData.withName("mgm"));
         entity.setId(UUID.randomUUID());
-        
+
         // when
         Studio result = StudioMapper.toDomain(entity);
 
@@ -53,7 +53,7 @@ class StudioMapperTest implements BaseUnitTest {
         // given
         Studio studio = StudioTestData.withDefaultName();
         studio.setId(StudioId.of(UUID.randomUUID()));
-        
+
         // when
         StudioEntity entity = StudioMapper.fromDomain(studio);
         Studio result = StudioMapper.toDomain(entity);
