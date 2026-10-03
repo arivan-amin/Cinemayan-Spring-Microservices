@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.cinemayan</groupId>
-        <artifactId>cinemayan</artifactId>
+        <groupId>com.maya.cbs</groupId>
+        <artifactId>cbs</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>cinemayan-coverage</artifactId>
+    <artifactId>cbs-coverage</artifactId>
     <version>1.0.0</version>
-    <name>Cinemayan :: Coverage</name>
+    <name>Maya CBS :: Coverage</name>
 
     <properties>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>com.cinemayan</groupId>
-            <artifactId>cinemayan-core</artifactId>
+            <artifactId>cbs-core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
@@ -37,12 +37,12 @@
         </dependency>
         <dependency>
             <groupId>com.cinemayan</groupId>
-            <artifactId>cinemayan-api-gateway</artifactId>
+            <artifactId>cbs-api-gateway</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.cinemayan</groupId>
-            <artifactId>cinemayan-catalog-service</artifactId>
+            <artifactId>cinemayan-ledger-service</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>

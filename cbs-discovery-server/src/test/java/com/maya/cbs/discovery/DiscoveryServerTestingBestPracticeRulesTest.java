@@ -1,10 +1,10 @@
-package com.cinemayan.discovery;
+package com.maya.cbs.discovery;
 
-import com.cinemayan.testing.architecture.rules.TestingBestPracticeRules;
+import com.maya.cbs.testing.architecture.rules.TestingBestPracticeRules;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 
-import static com.cinemayan.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
+import static com.maya.cbs.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
 
 @AnalyzeClasses (packages = BASE_PACKAGE, importOptions = ImportOption.OnlyIncludeTests.class)
 class DiscoveryServerTestingBestPracticeRulesTest implements TestingBestPracticeRules {

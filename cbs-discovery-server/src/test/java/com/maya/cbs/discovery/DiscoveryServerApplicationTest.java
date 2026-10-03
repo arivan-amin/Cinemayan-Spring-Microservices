@@ -1,6 +1,6 @@
-package com.cinemayan.discovery;
+package com.maya.cbs.discovery;
 
-import com.cinemayan.testing.architecture.bases.BaseUnitTest;
+import com.maya.cbs.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
