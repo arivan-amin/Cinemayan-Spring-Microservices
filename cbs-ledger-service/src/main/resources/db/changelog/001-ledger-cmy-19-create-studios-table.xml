@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
-    <changeSet id="catalog-cmy-19-create-studios-table" author="Arivan-Amin">
+    <changeSet id="ledger-cmy-19-create-studios-table" author="Arivan-Amin">
         <createTable tableName="studios">
             <column name="id" type="BINARY(16)">
                 <constraints primaryKey="true" nullable="false" />

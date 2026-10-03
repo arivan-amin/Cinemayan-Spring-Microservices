@@ -8,6 +8,6 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 import static com.maya.cbs.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
 
 @AnalyzeClasses (packages = BASE_PACKAGE, importOptions = ImportOption.DoNotIncludeTests.class)
-class CatalogArchitectureTest implements CommonBestPracticeRules, CleanArchitectureRules {
+class LedgerArchitectureTest implements CommonBestPracticeRules, CleanArchitectureRules {
 
 }

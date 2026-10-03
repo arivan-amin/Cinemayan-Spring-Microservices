@@ -12,11 +12,11 @@ import static com.maya.cbs.core.domain.config.CoreApplicationConfig.LIQUIBASE_CH
 
 @Configuration
 @Slf4j
-class CatalogLiquibaseConfig {
+class LedgerLiquibaseConfig {
 
     @Bean
-    public SpringLiquibase liquibase (CatalogLiquibaseProperties properties) {
-        log.info("Initializing Catalog Liquibase Bean");
+    public SpringLiquibase liquibase (LedgerLiquibaseProperties properties) {
+        log.info("Initializing Ledger Liquibase Bean");
 
         DataSource liquibaseDataSource = DataSourceBuilder.create()
             .url(properties.url())

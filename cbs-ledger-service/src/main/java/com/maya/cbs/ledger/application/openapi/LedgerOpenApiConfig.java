@@ -11,22 +11,24 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+import static com.maya.cbs.core.application.openapi.OpenApiDetails.*;
+
 @Configuration
 @RequiredArgsConstructor
 @Slf4j
-class CatalogOpenApiConfig {
+class LedgerOpenApiConfig {
 
     private final OpenApiServerProperties serverProperties;
 
     @Bean
     public OpenAPI myOpenAPI () {
-        log.info("Catalog OpenApiServerProperties fetched from config file = {}", serverProperties);
+        log.info("Ledger OpenApiServerProperties fetched from config file = {}", serverProperties);
         Server server = new Server();
         server.setUrl(serverProperties.url());
         server.setDescription("Server URL");
 
-        Info info = new Info().title("Catalog Service API")
-            .description("Provides all the API related to Catalog service")
+        Info info = new Info().title("Ledger Service API")
+            .description("Provides all the API related to Ledger service")
             .version("1.0")
             .contact(getOpenApiContactDetails())
             .termsOfService(getOpenApiTermsOfService())

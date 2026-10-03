@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public final class CategoryCacheList {
+public final class LedgerCacheList {
 
     public static final String ALL_STUDIOS = "category.allStudios";
     public static final String STUDIO_BY_ID = "category.studioById";

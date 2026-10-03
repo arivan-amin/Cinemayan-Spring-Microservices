@@ -161,10 +161,10 @@ Example of API response for every error.
 ```
 {
     "type": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/RuntimeException.html",
-    "title": "Requested Studio Not Found",
+    "title": "Requested Ledger Not Found",
     "status": 404,
     "detail": "Studio by the requested id not found",
-    "instance": "/catalog/protected/v1/studios/33bff7c7-77ee-4c51-9ee0-c870b437f82e",
+    "instance": "/ledger/protected/v1/studios/33bff7c7-77ee-4c51-9ee0-c870b437f82e",
     "category": "Resource Not Found",
     "timestamp": "2025-04-22T18:45:43.927431130Z"
 }
@@ -240,7 +240,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
    ```
    docker compose up -d
    ```
-5. **Start services (Catalog) from IDE or Maven**
+5. **Start services (Ledger) from IDE or Maven**
 
 # Access the Services
 

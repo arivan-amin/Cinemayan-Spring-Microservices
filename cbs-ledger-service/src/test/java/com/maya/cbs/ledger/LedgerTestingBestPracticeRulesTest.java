@@ -7,6 +7,6 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 import static com.maya.cbs.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
 
 @AnalyzeClasses (packages = BASE_PACKAGE, importOptions = ImportOption.OnlyIncludeTests.class)
-class CatalogTestingBestPracticeRulesTest implements TestingBestPracticeRules {
+class LedgerTestingBestPracticeRulesTest implements TestingBestPracticeRules {
 
 }

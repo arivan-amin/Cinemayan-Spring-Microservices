@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableCaching
-class CatalogCacheConfig {
+class LedgerCacheConfig {
 
     @Bean
-    public CacheManager catalogCacheManager () {
+    public CacheManager ledgerCacheManager () {
         CaffeineCacheManager manager = new CaffeineCacheManager();
-        for (CacheDefinition cache : CategoryCacheList.getCaches()) {
+        for (CacheDefinition cache : LedgerCacheList.getCaches()) {
             manager.registerCustomCache(cache.getName(), CaffeineCacheHelper.toCaffeine(cache)
                 .build());
         }

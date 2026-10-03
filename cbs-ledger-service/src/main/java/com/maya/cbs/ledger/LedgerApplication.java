@@ -20,9 +20,9 @@ import static com.maya.cbs.core.domain.config.CoreApplicationConfig.BASE_PACKAGE
 @EnableCaching
 @EnableScheduling
 @EnableJpaAuditing
-public class CatalogApplication {
+public class LedgerApplication {
 
     static void main (String[] args) {
-        SpringApplication.run(CatalogApplication.class, args);
+        SpringApplication.run(LedgerApplication.class, args);
     }
 }

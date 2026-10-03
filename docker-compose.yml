@@ -154,13 +154,13 @@ services:
     container_name: phpmyadmin
     restart: unless-stopped
     environment:
-      PMA_HOST: catalog-mysql
+      PMA_HOST: ledger-mysql
       PMA_USER: root
       PMA_PASSWORD: mysql
     ports:
       - "9797:80"
     depends_on:
-      - catalog-mysql
+      - ledger-mysql
 
   redis:
     image: redis:8.4.3-alpine

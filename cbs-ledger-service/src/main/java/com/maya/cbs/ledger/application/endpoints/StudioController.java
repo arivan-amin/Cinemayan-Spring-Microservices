@@ -1,8 +1,7 @@
 package com.maya.cbs.ledger.application.endpoints;
 
-import com.maya.cbs.catalog.domain.studio.command.*;
 import com.maya.cbs.core.domain.pagination.PaginationCriteria;
-import com.maya.cbs.ledger.application.config.cache.CategoryCacheList;
+import com.maya.cbs.ledger.application.config.cache.LedgerCacheList;
 import com.maya.cbs.ledger.application.request.studio.CreateStudioRequest;
 import com.maya.cbs.ledger.application.request.studio.UpdateStudioRequest;
 import com.maya.cbs.ledger.application.response.GetStudiosResponse;
@@ -42,7 +41,7 @@ class StudioController {
     private final DeleteStudioCommand deleteCommand;
 
     @GetMapping (StudioApiURLs.GET_STUDIOS_URL)
-    @Cacheable (CategoryCacheList.ALL_STUDIOS)
+    @Cacheable (LedgerCacheList.ALL_STUDIOS)
     @Operation (summary = "Get a list of studios")
     @ResponseStatus (HttpStatus.OK)
     public GetStudiosResponse getAllStudios (
@@ -59,7 +58,7 @@ class StudioController {
     }
 
     @GetMapping (StudioApiURLs.GET_STUDIO_BY_ID_URL)
-    @Cacheable (CategoryCacheList.STUDIO_BY_ID)
+    @Cacheable (LedgerCacheList.STUDIO_BY_ID)
     @Operation (summary = "Get a studio by ID")
     @ResponseStatus (HttpStatus.OK)
     public StudioResponse getStudioById (@PathVariable UUID id) {
@@ -70,7 +69,7 @@ class StudioController {
 
     @PostMapping (StudioApiURLs.CREATE_STUDIO_URL)
     @Operation (summary = "Creates a studio")
-    @CacheEvict (cacheNames = { CategoryCacheList.ALL_STUDIOS, CategoryCacheList.STUDIO_BY_ID },
+    @CacheEvict (cacheNames = { LedgerCacheList.ALL_STUDIOS, LedgerCacheList.STUDIO_BY_ID },
         allEntries = true)
     @ResponseStatus (HttpStatus.CREATED)
     public StudioResponse createStudio (@RequestBody @Valid CreateStudioRequest request) {
@@ -80,7 +79,7 @@ class StudioController {
 
     @PutMapping (StudioApiURLs.UPDATE_STUDIO_URL)
     @Operation (summary = "Updates a studio")
-    @CacheEvict (cacheNames = { CategoryCacheList.ALL_STUDIOS, CategoryCacheList.STUDIO_BY_ID },
+    @CacheEvict (cacheNames = { LedgerCacheList.ALL_STUDIOS, LedgerCacheList.STUDIO_BY_ID },
         allEntries = true)
     @ResponseStatus (HttpStatus.OK)
     public StudioResponse updateStudio (@PathVariable UUID id,
@@ -91,7 +90,7 @@ class StudioController {
 
     @DeleteMapping (StudioApiURLs.DELETE_STUDIO_URL)
     @Operation (summary = "Deletes a studio")
-    @CacheEvict (cacheNames = { CategoryCacheList.ALL_STUDIOS, CategoryCacheList.STUDIO_BY_ID },
+    @CacheEvict (cacheNames = { LedgerCacheList.ALL_STUDIOS, LedgerCacheList.STUDIO_BY_ID },
         allEntries = true)
     @ResponseStatus (HttpStatus.NO_CONTENT)
     public void deleteStudio (@PathVariable UUID id) {

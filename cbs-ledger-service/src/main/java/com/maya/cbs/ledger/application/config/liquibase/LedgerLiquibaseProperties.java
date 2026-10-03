@@ -5,8 +5,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-@ConfigurationProperties (prefix = "maya.cbs.catalog.liquibase")
-public record CatalogLiquibaseProperties(
+@ConfigurationProperties (prefix = "maya.cbs.ledger.liquibase")
+public record LedgerLiquibaseProperties(
     @NotBlank
     String url,
 
