@@ -1,6 +1,6 @@
 package com.maya.cbs.ledger.infrastructure.storage.studio;
 
-import com.cinemayan.core.domain.pagination.*;
+import com.maya.cbs.core.domain.pagination.*;
 import com.maya.cbs.ledger.domain.studio.entity.Studio;
 import com.maya.cbs.ledger.domain.studio.persistence.GetStudiosParams;
 import com.maya.cbs.ledger.domain.studio.persistence.StudioStorage;

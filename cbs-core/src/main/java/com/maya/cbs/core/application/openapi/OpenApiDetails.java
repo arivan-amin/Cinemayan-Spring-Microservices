@@ -22,6 +22,6 @@ public final class OpenApiDetails {
     }
 
     public static String getOpenApiTermsOfService () {
-        return "https://www.arivan-amin.com/cinemayan/terms";
+        return "https://www.arivan-amin.com/maya/cbs/terms";
     }
 }

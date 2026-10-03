@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 @Validated
-@ConfigurationProperties (prefix = "cinemayan.api.gateway.service")
+@ConfigurationProperties (prefix = "maya.cbs.api.gateway.service")
 public record RouteProperties(
     @NotEmpty
     List<ServiceRoute> routes) {

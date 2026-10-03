@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-@ConfigurationProperties (prefix = "cinemayan.api.gateway.route.eureka")
+@ConfigurationProperties (prefix = "maya.cbs.api.gateway.route.eureka")
 public record EurekaProperties(
     @NotBlank
     String host,

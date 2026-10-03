@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-@ConfigurationProperties (prefix = "cinemayan.api.gateway.redis")
+@ConfigurationProperties (prefix = "maya.cbs.api.gateway.redis")
 public record RedisProperties(
     @NotBlank
     String host,
