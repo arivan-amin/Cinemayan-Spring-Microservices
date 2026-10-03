@@ -5,6 +5,7 @@ import com.tngtech.archunit.core.domain.JavaMethod;
 import com.tngtech.archunit.lang.*;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class ApiVersioningCheck extends ArchCondition<JavaMethod> {
 
@@ -27,8 +28,14 @@ public class ApiVersioningCheck extends ArchCondition<JavaMethod> {
 
     private void validateVersioning (JavaAnnotation<JavaMethod> annotation, JavaMethod method,
                                      ConditionEvents events) {
-        String[] urlPatterns = (String[]) annotation.get("value")
-            .orElse(new String[0]);
+        String[] urlPatterns = Stream.of("value", "path")
+            .map(annotation::get)
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .map(value -> (String[]) value)
+            .flatMap(Arrays::stream)
+            .toArray(String[]::new);
+
         boolean isNotVersioned = Arrays.stream(urlPatterns)
             .noneMatch(url -> apiVersioningPatterns.stream()
                 .anyMatch(url::matches));

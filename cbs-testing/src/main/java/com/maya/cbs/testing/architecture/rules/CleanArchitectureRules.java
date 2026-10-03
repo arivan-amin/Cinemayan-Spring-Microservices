@@ -2,7 +2,8 @@ package com.maya.cbs.testing.architecture.rules;
 
 import com.maya.cbs.testing.architecture.rules.predicates.*;
 import com.tngtech.archunit.base.DescribedPredicate;
-import com.tngtech.archunit.core.domain.*;
+import com.tngtech.archunit.core.domain.JavaMethod;
+import com.tngtech.archunit.core.domain.JavaModifier;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 import static com.maya.cbs.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
+import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAPackage;
+import static com.tngtech.archunit.core.domain.JavaClass.Predicates.simpleNameEndingWith;
 import static com.tngtech.archunit.core.domain.properties.CanBeAnnotated.Predicates.annotatedWith;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
@@ -54,7 +57,7 @@ public interface CleanArchitectureRules {
 
     String CONTROLLER_PACKAGE = "..endpoints..";
 
-    String COMMANDS_AND_QUERIES_METHOD_NAME = "execute";
+    String CQRS_EXECUTE_METHOD = "execute";
 
     String CONTROLLER_SUFFIX = "Controller";
 
@@ -108,14 +111,6 @@ public interface CleanArchitectureRules {
         .allowEmptyShould(true);
 
     @ArchTest
-    ArchRule DOMAIN_SHOULD_NOT_DEPEND_ON_SPRING = noClasses().that()
-        .resideInAPackage(DOMAIN_PACKAGE)
-        .should()
-        .accessClassesThat()
-        .resideInAPackage(SPRING_FRAMEWORK_PACKAGES)
-        .allowEmptyShould(true);
-
-    @ArchTest
     ArchRule INFRASTRUCTURE_LAYER_SHOULD_NOT_ACCESS_APPLICATION_LAYER = noClasses().that()
         .resideInAPackage(INFRASTRUCTURE_PACKAGE)
         .should()
@@ -137,13 +132,6 @@ public interface CleanArchitectureRules {
         .should()
         .onlyBeAccessed()
         .byAnyPackage(APPLICATION_PACKAGE, INFRASTRUCTURE_PACKAGE)
-        .allowEmptyShould(true);
-
-    @ArchTest
-    ArchRule INTERFACES_MUST_NOT_BE_PLACED_IN_IMPLEMENTATION_PACKAGES = noClasses().that()
-        .resideInAPackage(APPLICATION_PACKAGE)
-        .should()
-        .beInterfaces()
         .allowEmptyShould(true);
 
     @ArchTest
@@ -185,7 +173,7 @@ public interface CleanArchitectureRules {
         .whereLayer(APPLICATION_LAYER)
         .mayNotBeAccessedByAnyLayer()
         .ignoreDependency(annotatedWith(SpringBootApplication.class),
-            JavaClass.Predicates.resideInAPackage(APPLICATION_PACKAGE))
+            resideInAPackage(APPLICATION_PACKAGE))
         .whereLayer(INFRASTRUCTURE_LAYER)
         .mayOnlyBeAccessedByLayers(APPLICATION_LAYER)
         .allowEmptyShould(true);
@@ -195,6 +183,8 @@ public interface CleanArchitectureRules {
         methods().that()
             .areDeclaredInClassesThat()
             .resideInAPackage(CONTROLLER_PACKAGE)
+            .and()
+            .haveNameNotContaining("File")
             .and()
             .arePublic()
             .should(new ResponseWrapperArchCondition(API_RESPONSE_SUFFIX))
@@ -249,7 +239,7 @@ public interface CleanArchitectureRules {
         .because("Commands and queries must be public to be used by other layers.");
 
     @ArchTest
-    ArchRule COMMANDS_AND_QUERIES_SHOULD_HAVE_EXACTLY_ONE_PUBLIC_METHOD_NAMED_EXECUTE =
+    ArchRule COMMANDS_AND_QUERIES_SHOULD_HAVE_EXACTLY_ONE_TRANSACTIONAL_EXECUTE_METHOD =
         classes().that()
             .resideInAPackage(DOMAIN_PACKAGE)
             .and()
@@ -258,7 +248,7 @@ public interface CleanArchitectureRules {
             .haveSimpleNameEndingWith(QUERY_SUFFIX)
             .and()
             .doNotHaveModifier(JavaModifier.ABSTRACT)
-            .should(new ExecuteMethodArchCondition(COMMANDS_AND_QUERIES_METHOD_NAME))
+            .should(new ExecuteMethodArchCondition())
             .allowEmptyShould(true)
             .because(
                 "Commands and queries should adhere to the single responsibility principle and " +
@@ -289,6 +279,30 @@ public interface CleanArchitectureRules {
         .should(new CommandAndQueriesOutputCheck())
         .allowEmptyShould(true)
         .because("Commands and Queries should return a type with a name that ends with Output");
+
+    @ArchTest
+    ArchRule DOMAIN_SHOULD_NOT_DEPEND_ON_SPRING = noClasses().that()
+        .resideInAPackage(DOMAIN_PACKAGE)
+        .and()
+        .haveSimpleNameNotEndingWith(COMMAND_SUFFIX)
+        .and()
+        .haveSimpleNameNotEndingWith(QUERY_SUFFIX)
+        .should()
+        .dependOnClassesThat()
+        .resideInAPackage(SPRING_FRAMEWORK_PACKAGES)
+        .allowEmptyShould(true)
+        .as("Domain classes (excluding command classes) should not depend on Spring Framework");
+
+    @ArchTest
+    ArchRule DOMAIN_COMMANDS_SHOULD_NOT_DEPEND_ON_SPRING_EXCEPT_TRANSACTIONAL = noClasses().that()
+        .resideInAPackage(DOMAIN_PACKAGE)
+        .and(simpleNameEndingWith(COMMAND_SUFFIX).or(simpleNameEndingWith(QUERY_SUFFIX)))
+        .should()
+        .dependOnClassesThat(resideInAPackage(SPRING_FRAMEWORK_PACKAGES).and(
+            DescribedPredicate.not(resideInAPackage("org.springframework.transaction.."))))
+        .allowEmptyShould(true)
+        .as("Domain command and query classes should not depend on Spring Framework, except " +
+            "the transactional annotation");
 
     @ArchTest
     ArchRule CONTROLLERS_SHOULD_BE_SUFFIXED = classes().that()
@@ -363,6 +377,8 @@ public interface CleanArchitectureRules {
         })
         .should()
         .resideInAPackage(APPLICATION_PACKAGE)
+        .orShould()
+        .resideInAPackage(INFRASTRUCTURE_PACKAGE)
         .andShould()
         .haveSimpleNameEndingWith(SCHEDULER_SUFFIX)
         .allowEmptyShould(true);

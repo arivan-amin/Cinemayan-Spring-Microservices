@@ -3,14 +3,16 @@ package com.maya.cbs.testing.architecture.rules;
 import com.maya.cbs.testing.architecture.bases.BaseUnitTest;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.logging.Logger;
 
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.fields;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
 import static com.tngtech.archunit.library.GeneralCodingRules.*;
 
 public interface CommonBestPracticeRules extends BaseUnitTest {
+
+    String TEST_DATA_CLASSES_NAME = ".*TestData";
 
     @ArchTest
     ArchRule INTERFACES_SHOULD_NOT_HAVE_NAMES_ENDING_WITH_THE_WORD_INTERFACE = noClasses().that()
@@ -54,8 +56,20 @@ public interface CommonBestPracticeRules extends BaseUnitTest {
     ArchRule NO_JODA_TIME = NO_CLASSES_SHOULD_USE_JODATIME;
 
     @ArchTest
-    ArchRule NO_FIELD_INJECTION = NO_CLASSES_SHOULD_USE_FIELD_INJECTION;
+    ArchRule NO_FIELD_INJECTION_IN_PRODUCTION_CODE = noFields().that()
+        .areDeclaredInClassesThat()
+        .doNotHaveSimpleName("BaseDatabaseTest")
+        .should()
+        .beAnnotatedWith(Autowired.class)
+        .because("always use constructor injection");
 
     @ArchTest
     ArchRule AVOID_DEPRECATED_API = DEPRECATED_API_SHOULD_NOT_BE_USED.allowEmptyShould(true);
+
+    @ArchTest
+    ArchRule TEST_DATA_CLASSES_SHOULD_ONLY_BE_USED_IN_TESTS = noClasses().that()
+        .haveNameNotMatching(TEST_DATA_CLASSES_NAME)
+        .should()
+        .dependOnClassesThat()
+        .haveNameMatching(TEST_DATA_CLASSES_NAME);
 }

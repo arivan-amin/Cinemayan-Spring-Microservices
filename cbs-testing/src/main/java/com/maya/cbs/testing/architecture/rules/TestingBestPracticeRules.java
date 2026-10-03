@@ -88,5 +88,5 @@ public interface TestingBestPracticeRules extends BaseUnitTest {
         .should()
         .dependOnClassesThat()
         .haveFullyQualifiedName("org.junit.jupiter.api.Assertions")
-        .because("assertions must only use AssertJ (org.assertj.core.api.Assertions");
+        .because("assertions must use AssertJ (org.assertj.core.api.Assertions)");
 }

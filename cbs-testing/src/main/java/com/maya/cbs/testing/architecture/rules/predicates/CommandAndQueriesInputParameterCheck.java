@@ -4,8 +4,8 @@ import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaMethod;
 import com.tngtech.archunit.lang.*;
 
-import static com.maya.cbs.testing.architecture.rules.CleanArchitectureRules.COMMANDS_AND_QUERIES_METHOD_NAME;
 import static com.maya.cbs.testing.architecture.rules.CleanArchitectureRules.COMMAND_QUERY_PARAMETER_NAME_SUFFIX;
+import static com.maya.cbs.testing.architecture.rules.CleanArchitectureRules.CQRS_EXECUTE_METHOD;
 
 public class CommandAndQueriesInputParameterCheck extends ArchCondition<JavaClass> {
 
@@ -17,7 +17,7 @@ public class CommandAndQueriesInputParameterCheck extends ArchCondition<JavaClas
     public void check (JavaClass javaClass, ConditionEvents events) {
         javaClass.getMethods()
             .stream()
-            .filter(method -> COMMANDS_AND_QUERIES_METHOD_NAME.equals(method.getName()))
+            .filter(method -> CQRS_EXECUTE_METHOD.equals(method.getName()))
             .filter(method -> !method.getParameters()
                 .isEmpty())
             .filter(method -> isParameterNameInvalid(getParameterName(method)))
