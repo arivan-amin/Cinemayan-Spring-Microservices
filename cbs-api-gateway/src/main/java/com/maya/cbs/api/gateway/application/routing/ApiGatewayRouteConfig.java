@@ -2,7 +2,6 @@ package com.maya.cbs.api.gateway.application.routing;
 
 import com.maya.cbs.api.gateway.application.config.EurekaProperties;
 import com.maya.cbs.api.gateway.application.config.RouteProperties;
-import com.maya.cbs.api.gateway.domain.RouteCreator;
 import com.maya.cbs.api.gateway.domain.ServiceRoute;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

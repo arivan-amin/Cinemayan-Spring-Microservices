@@ -1,5 +1,6 @@
-package com.maya.cbs.api.gateway.domain;
+package com.maya.cbs.api.gateway.application.routing;
 
+import com.maya.cbs.api.gateway.domain.ServiceRoute;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.builder.Buildable;
 import org.springframework.cloud.gateway.route.builder.PredicateSpec;

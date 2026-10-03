@@ -1,7 +1,7 @@
 package com.maya.cbs.api.gateway.application.config;
 
 import com.maya.cbs.api.gateway.application.routing.DefaultRouteCreator;
-import com.maya.cbs.api.gateway.domain.RouteCreator;
+import com.maya.cbs.api.gateway.application.routing.RouteCreator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;

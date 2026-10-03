@@ -13,9 +13,7 @@ import static com.maya.cbs.testing.architecture.rules.CleanArchitectureRules.CQR
 public class ExecuteMethodArchCondition extends ArchCondition<JavaClass> {
 
     public ExecuteMethodArchCondition () {
-        super(
-            "have exactly one public method named 'execute', annotated with @Transactional with " +
-            "the correct readOnly flag");
+        super("must have exactly one public method named 'execute', annotated with @Transactional");
     }
 
     @Override

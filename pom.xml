@@ -281,12 +281,12 @@
                     </to>
                 </configuration>
                 <executions>
-                    <execution>
+                    <!--<execution>
                         <phase>package</phase>
                         <goals>
                             <goal>dockerBuild</goal>
                         </goals>
-                    </execution>
+                    </execution>-->
                 </executions>
             </plugin>
             <plugin>
