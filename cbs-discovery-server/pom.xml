@@ -25,13 +25,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.cinemayan</groupId>
+            <groupId>com.maya.cbs</groupId>
             <artifactId>cbs-core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>com.cinemayan</groupId>
-            <artifactId>cinemayan-testing</artifactId>
+            <groupId>com.maya.cbs</groupId>
+            <artifactId>cbs-testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
     </dependencies>

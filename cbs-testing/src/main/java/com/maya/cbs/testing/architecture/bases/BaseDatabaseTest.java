@@ -27,8 +27,8 @@ public abstract class BaseDatabaseTest extends BaseIntegrationTest {
         registry.add("spring.datasource.password", MYSQL_CONTAINER::getPassword);
         registry.add("spring.datasource.driver-class-name", MYSQL_CONTAINER::getDriverClassName);
 
-        registry.add("cinemayan.catalog.liquibase.url", MYSQL_CONTAINER::getJdbcUrl);
-        registry.add("cinemayan.catalog.liquibase.username", MYSQL_CONTAINER::getUsername);
-        registry.add("cinemayan.catalog.liquibase.password", MYSQL_CONTAINER::getPassword);
+        registry.add("maya.cbs.catalog.liquibase.url", MYSQL_CONTAINER::getJdbcUrl);
+        registry.add("maya.cbs.catalog.liquibase.username", MYSQL_CONTAINER::getUsername);
+        registry.add("maya.cbs.catalog.liquibase.password", MYSQL_CONTAINER::getPassword);
     }
 }

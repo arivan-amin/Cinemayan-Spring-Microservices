@@ -21,28 +21,28 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.cinemayan</groupId>
+            <groupId>com.maya.cbs</groupId>
             <artifactId>cbs-core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>com.cinemayan</groupId>
-            <artifactId>cinemayan-testing</artifactId>
+            <groupId>com.maya.cbs</groupId>
+            <artifactId>cbs-testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>com.cinemayan</groupId>
-            <artifactId>cinemayan-discovery-server</artifactId>
+            <groupId>com.maya.cbs</groupId>
+            <artifactId>cbs-discovery-server</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.cinemayan</groupId>
+            <groupId>com.maya.cbs</groupId>
             <artifactId>cbs-api-gateway</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.cinemayan</groupId>
-            <artifactId>cinemayan-ledger-service</artifactId>
+            <groupId>com.maya.cbs</groupId>
+            <artifactId>cbs-ledger-service</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
