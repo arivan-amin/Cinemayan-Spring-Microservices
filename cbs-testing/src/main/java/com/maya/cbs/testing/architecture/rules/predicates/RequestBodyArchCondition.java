@@ -24,7 +24,7 @@ public class RequestBodyArchCondition extends ArchCondition<JavaMethod> {
         if (requestBodyParameter != null &&
             !requestBodyParameter.isAnnotationPresent(Valid.class)) {
             String message = ("Method %s uses a @RequestBody parameter but is missing the @Valid " +
-                "annotation").formatted(method.getFullName());
+                              "annotation").formatted(method.getFullName());
             events.add(SimpleConditionEvent.violated(method, message));
         }
     }

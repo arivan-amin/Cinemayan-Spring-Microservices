@@ -25,7 +25,7 @@ public final class ServerControllerAdvices {
     ProblemDetail handleAsyncRequestTimeoutException (AsyncRequestTimeoutException exception,
                                                       HttpServletRequest request) {
         log.error("Async request timed out, server failed to process request in time: method={}, " +
-                "uri={}, client={}", request.getMethod(), request.getRequestURI(),
+                  "uri={}, client={}", request.getMethod(), request.getRequestURI(),
             request.getRemoteAddr(), exception);
 
         return factory.build(ProblemDetailParams.builder()
@@ -42,7 +42,7 @@ public final class ServerControllerAdvices {
         OptimisticLockingFailureException exception, HttpServletRequest request) {
         log.error(
             "Optimistic locking conflict, concurrent modification detected: method={}, uri={}, " +
-                "client={}, reason={}", request.getMethod(), request.getRequestURI(),
+            "client={}, reason={}", request.getMethod(), request.getRequestURI(),
             request.getRemoteAddr(), exception.getMessage(), exception);
 
         return factory.build(ProblemDetailParams.builder()

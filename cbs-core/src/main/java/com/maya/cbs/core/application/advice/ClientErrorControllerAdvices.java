@@ -30,7 +30,7 @@ public final class ClientErrorControllerAdvices {
     ProblemDetail handleMethodArgumentTypeMismatchException (
         MethodArgumentTypeMismatchException exception, HttpServletRequest request) {
         log.warn("Method argument type mismatch: method={}, uri={}, client={}, param={}, " +
-                "providedValue={}, expectedType={}", request.getMethod(), request.getRequestURI(),
+                 "providedValue={}, expectedType={}", request.getMethod(), request.getRequestURI(),
             request.getRemoteAddr(), exception.getName(), exception.getValue(),
             exception.getRequiredType());
 
@@ -49,7 +49,7 @@ public final class ClientErrorControllerAdvices {
     ProblemDetail handleHttpMediaTypeNotAcceptableException (
         HttpMediaTypeNotAcceptableException exception, HttpServletRequest request) {
         log.warn("Media type not acceptable: method={}, uri={}, client={}, acceptHeader={}, " +
-                "supportedMediaTypes={}", request.getMethod(), request.getRequestURI(),
+                 "supportedMediaTypes={}", request.getMethod(), request.getRequestURI(),
             request.getRemoteAddr(), request.getHeader("Accept"),
             exception.getSupportedMediaTypes());
 
@@ -66,7 +66,7 @@ public final class ClientErrorControllerAdvices {
     ProblemDetail handleHttpMediaTypeNotSupportedException (
         HttpMediaTypeNotSupportedException exception, HttpServletRequest request) {
         log.warn("Unsupported media type: method={}, uri={}, client={}, contentType={}, " +
-                "supportedMediaTypes={}", request.getMethod(), request.getRequestURI(),
+                 "supportedMediaTypes={}", request.getMethod(), request.getRequestURI(),
             request.getRemoteAddr(), exception.getContentType(),
             exception.getSupportedMediaTypes());
 
@@ -135,7 +135,7 @@ public final class ClientErrorControllerAdvices {
                                             HttpServletRequest request) {
         log.warn(
             "Bad request, Malformed or missing request body [method = {},uri = {},contentType = " +
-                "{},client = {},reason = {}", request.getMethod(), request.getRequestURI(),
+            "{},client = {},reason = {}", request.getMethod(), request.getRequestURI(),
             request.getContentType(), request.getRemoteAddr(), exception.getMessage());
 
         return factory.build(ProblemDetailParams.builder()
@@ -174,7 +174,7 @@ public final class ClientErrorControllerAdvices {
         MissingServletRequestParameterException exception, HttpServletRequest request) {
         log.warn(
             "Missing required request parameter: [method = {}, uri = {}, client = {}, paramName =" +
-                " {}, " + "paramType = {}]", request.getMethod(), request.getRequestURI(),
+            " {}, " + "paramType = {}]", request.getMethod(), request.getRequestURI(),
             request.getRemoteAddr(), exception.getParameterName(), exception.getParameterType());
 
         return factory.build(ProblemDetailParams.builder()

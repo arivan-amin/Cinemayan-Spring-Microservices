@@ -11,11 +11,11 @@ public final class ProblemDetailExceptionUrls {
 
     public static final String RUNTIME_EXCEPTION_URL =
         "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/RuntimeException" +
-            ".html";
+        ".html";
 
     public static final String EXCEPTION_URL =
         "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Exception" +
-            ".html";
+        ".html";
 
     public static final String CONSTRAINT_VIOLATION_EXCEPTION_URL =
         "https://docs.oracle.com/javaee/7/api/javax/validation/ConstraintViolationException.html";

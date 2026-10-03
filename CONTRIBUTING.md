@@ -61,8 +61,8 @@ following information:
     mvn test
     ```
 
-4. **Commit your changes** with a meaningful commit message (
-   see [Commit Messages](#commit-messages)):
+4. **Commit your changes** with a meaningful commit message
+   (see [Commit Messages](#commit-messages)):
 
     ```bash
     git commit -m "Add feature: YourFeatureName"

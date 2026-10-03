@@ -4,9 +4,11 @@
 
 # Maya Core Banking System
 
-**Maya-CBS** is an enterprise-grade **Core Banking System (CBS)** designed to model the foundations of a modern commercial bank.
+**Maya-CBS** is an enterprise-grade **Core Banking System (CBS)** designed to model the foundations
+of a modern commercial bank.
 
-The project focuses on **clean architecture**, with the goal of building a realistic banking platform.
+The project focuses on **clean architecture**, with the goal of building a realistic banking
+platform.
 
 This codebase is designed for Java backend developers interested in a **Microservices** application
 following on **Clean Architecture** and **SOLID** principles, DDD, built with **Spring Boot 4**,
@@ -32,19 +34,25 @@ following on **Clean Architecture** and **SOLID** principles, DDD, built with **
 
 ## Project Highlights
 
-* **Commercial Banking** — accounts, customers, products, payments, lending, and other core banking capabilities.
-* **Double-Entry Ledger** — financially consistent and auditable accounting at the heart of the system.
-* **Clean Architecture** — domain logic isolated from frameworks, databases, messaging, and infrastructure.
+* **Commercial Banking** — accounts, customers, products, payments, lending, and other core banking
+  capabilities.
+* **Double-Entry Ledger** — financially consistent and auditable accounting at the heart of the
+  system.
+* **Clean Architecture** — domain logic isolated from frameworks, databases, messaging, and
+  infrastructure.
 * **Microservices** — indep`endently deployable services with clear business boundaries.
 * **Enterprise-Grade Design** — SOLID principles, DDD, idempotency, auditability, and consistency.
-* **Event-Driven Integration** — asynchronous communication for workflows that benefit from decoupling.
-* **Security & Compliance** — designed with authentication, authorization, audit trails, and financial controls in mind.
+* **Event-Driven Integration** — asynchronous communication for workflows that benefit from
+  decoupling.
+* **Security & Compliance** — designed with authentication, authorization, audit trails, and
+  financial controls in mind.
 
 ## Project Status
 
 **Active Development**
 
-The project is being built incrementally, starting with the **Ledger Service** and expanding toward a complete commercial banking platform.
+The project is being built incrementally, starting with the **Ledger Service** and expanding toward
+a complete commercial banking platform.
 
 ## Currently Implemented Services:
 
@@ -96,14 +104,13 @@ The project is being built incrementally, starting with the **Ledger Service** a
 
 ## Clean Architecture Implementation Layers
 
-Services in this app implement strict architectural boundaries enforced by ArchUnit rules that
-cause failing unit tests when violated.
-In each service, there are 3 layers:
+Services in this app implement strict architectural boundaries enforced by ArchUnit rules that cause
+failing unit tests when violated. In each service, there are 3 layers:
 
 ### Domain
 
 - contains only business logic, entities, command/queries.
-- Persistence(JDBC, JPA, NoSQL) or Spring code is not allowed in this layer.
+- Persistence (JDBC, JPA, NoSQL) or Spring code is not allowed in this layer.
 - This is the innermost layer; it shouldn't know anything about the other layers.
 - Any access or references to classes in the other 2 layers will cause unit test failure.
 
@@ -133,8 +140,8 @@ called.
 
 ### Clean Restful API in all services
 
-The API follows the modern best practices in RESTful services recommendations,
-like using **ResponseEntity** and returning **ProblemDetail**.
+The API follows the modern best practices in RESTful services recommendations, like using
+**ResponseEntity** and returning **ProblemDetail**.
 
 ### CQRS
 
@@ -155,8 +162,7 @@ Use PMD to verify the coding style and Pitest for mutation testing.
 ### RestControllerAdvice
 
 Handle specific exceptions and return a unified and standard error response instead of an exception
-stack trace using Spring **ProblemDetail**.
-Example of API response for every error.
+stack trace using Spring **ProblemDetail**. Example of API response for every error.
 
 ```
 {

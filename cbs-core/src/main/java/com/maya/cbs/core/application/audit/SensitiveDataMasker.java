@@ -40,8 +40,8 @@ class SensitiveDataMasker {
 
     private boolean isSimpleType (Object value) {
         return value instanceof String || value instanceof Number || value instanceof Boolean ||
-            value instanceof Enum || value.getClass()
-            .isPrimitive();
+               value instanceof Enum || value.getClass()
+                   .isPrimitive();
     }
 
     private String maskObjectFields (Object obj) {
@@ -93,6 +93,6 @@ class SensitiveDataMasker {
 
     private boolean isAnnotatedWithSensitiveData (Field field) {
         return field.isAnnotationPresent(SensitiveData.class) ||
-            isFieldNameInSensitiveProperties(field.getName());
+               isFieldNameInSensitiveProperties(field.getName());
     }
 }

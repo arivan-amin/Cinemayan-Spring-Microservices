@@ -18,8 +18,8 @@ public class StaticMethodArchCondition extends ArchCondition<JavaClass> {
         boolean hasStaticMethodNamedOf = javaClass.getMethods()
             .stream()
             .anyMatch(method -> method.getName()
-                .equals(apiResponseMethodName) && method.getModifiers()
-                .contains(JavaModifier.STATIC));
+                                    .equals(apiResponseMethodName) && method.getModifiers()
+                                    .contains(JavaModifier.STATIC));
 
         String message = "Class %s %s a static method named 'of'".formatted(javaClass.getName(),
             hasStaticMethodNamedOf ? "contains" : "does not contain");

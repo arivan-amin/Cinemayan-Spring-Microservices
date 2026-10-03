@@ -1,7 +1,6 @@
 package com.maya.cbs.testing.architecture.rules;
 
 import com.maya.cbs.testing.architecture.rules.predicates.*;
-import com.maya.cbs.testing.architecture.rules.predicates.*;
 import com.tngtech.archunit.base.DescribedPredicate;
 import com.tngtech.archunit.core.domain.*;
 import com.tngtech.archunit.junit.ArchTest;
@@ -201,7 +200,7 @@ public interface CleanArchitectureRules {
             .should(new ResponseWrapperArchCondition(API_RESPONSE_SUFFIX))
             .allowEmptyShould(true)
             .because("we do not want to couple the api directly to the return types of the " +
-                "domain module");
+                     "domain module");
 
     @ArchTest
     ArchRule COMMAND_SHOULD_BE_SUFFIXED = classes().that()
@@ -263,7 +262,7 @@ public interface CleanArchitectureRules {
             .allowEmptyShould(true)
             .because(
                 "Commands and queries should adhere to the single responsibility principle and " +
-                    "expose only the 'execute' method.");
+                "expose only the 'execute' method.");
 
     @ArchTest
     ArchRule COMMANDS_AND_QUERIES_SHOULD_HAVE_HAVE_SINGLE_PARAMETER_NAMED_INPUT = classes().that()
@@ -352,7 +351,7 @@ public interface CleanArchitectureRules {
         .allowEmptyShould(true)
         .because(
             "URLs must be recognized based on their path, whether they are public or require " +
-                "authentication");
+            "authentication");
 
     @ArchTest
     ArchRule SCHEDULER_CLASSES_SHOULD_BE_SUFFIXED_WITH_CORRECT_NAME = classes().that()

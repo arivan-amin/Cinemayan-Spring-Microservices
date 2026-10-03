@@ -31,7 +31,7 @@ public class ExecuteMethodArchCondition extends ArchCondition<JavaClass> {
         if (publicMethods.size() != 1 || executeMethodCount != 1) {
             events.add(new SimpleConditionEvent(javaClass, false,
                 javaClass + " should have exactly one public method, and it must be named " +
-                    "'execute'."));
+                "'execute'."));
         }
     }
 }
