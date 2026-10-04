@@ -22,10 +22,10 @@ scrape_configs:
           instance: 'Api-Gateway'
           application: 'Api-Gateway'
 
-  - job_name: 'catalog-service'
-    metrics_path: '/actuator/catalog/prometheus'
+  - job_name: 'ledger-service'
+    metrics_path: '/actuator/ledger/prometheus'
     static_configs:
       - targets: [ 'api-gateway:8080' ]
         labels:
-          instance: 'Catalog-Service'
-          application: 'Catalog-Service'
+          instance: 'Ledger-Service'
+          application: 'Ledger-Service'

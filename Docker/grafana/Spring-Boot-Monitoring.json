@@ -5988,8 +5988,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Catalog-Service",
-          "value": "Catalog-Service"
+          "text": "Ledger-Service",
+          "value": "Ledger-Service"
         },
         "datasource": {
           "type": "prometheus",
@@ -6019,8 +6019,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Catalog-Service",
-          "value": "Catalog-Service"
+          "text": "Ledger-Service",
+          "value": "Ledger-Service"
         },
         "datasource": {
           "type": "prometheus",
