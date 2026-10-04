@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
     <name>Maya-CBS</name>
 
-    <url>https://github.com/arivan-amin/maya-cbs-spring-microservices</url>
+    <url>https://github.com/arivan-amin/maya-cbs-microservices</url>
 
     <properties>
         <java.version>25</java.version>

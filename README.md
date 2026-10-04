@@ -224,8 +224,8 @@ Domain entities have no association with JPA and are never annotated with @Entit
 
 1. **Clone the Repository:**
    ```
-   git clone https://github.com/arivan-amin/Maya-Cbs-Spring-Microservices.git
-   cd Maya-Cbs-Spring-Microservices
+   git clone https://github.com/arivan-amin/maya-cbs-microservices.git
+   cd maya-cbs-microservices
    ```
 
 2. **Build and deploy the services to Docker using JIB:**
@@ -288,7 +288,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
 - **Discovery Server**: Dynamic service discovery and registry.
 - **API Gateway**: Centralized entry point for routing and security.
 - **Core Module**: Shared utilities and functionality.
-- **Ledger Service**: double-entry bookkeeping.
+- **Ledger Service**: double-entry book-keeping.
 
 ---
 
