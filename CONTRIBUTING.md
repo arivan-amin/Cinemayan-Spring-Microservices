@@ -1,4 +1,4 @@
-# Contributing to Cinemayan Spring Microservices
+# Contributing to Maya CBS Spring Microservices
 
 Thank you for considering contributing, We're excited to collaborate with the open-source community
 to improve this project. Below are some guidelines to help you get started.
@@ -61,8 +61,8 @@ following information:
     mvn test
     ```
 
-4. **Commit your changes** with a meaningful commit message (
-   see [Commit Messages](#commit-messages)):
+4. **Commit your changes** with a meaningful commit message
+   (see [Commit Messages](#commit-messages)):
 
     ```bash
     git commit -m "Add feature: YourFeatureName"

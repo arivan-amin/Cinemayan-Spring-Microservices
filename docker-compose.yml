@@ -17,7 +17,7 @@ x-base-service: &base-service
 services:
   discovery-server:
     <<: *base-service
-    image: arivanamin/cinemayan-discovery-server:latest
+    image: arivanamin/maya-cbs-discovery-server:latest
     container_name: discovery-server
     ports:
       - "8761:8761"
@@ -33,7 +33,7 @@ services:
 
   api-gateway:
     <<: *base-service
-    image: arivanamin/cinemayan-api-gateway:latest
+    image: arivanamin/maya-cbs-api-gateway:latest
     container_name: api-gateway
     ports:
       - "8080:8080"
@@ -137,15 +137,15 @@ services:
       - tempo
       - prometheus
 
-  catalog-mysql:
+  ledger-mysql:
     image: mysql:9.7.0
-    container_name: catalog-mysql
+    container_name: ledger-mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: mysql
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./Docker/mysql/catalog.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./Docker/mysql/ledger.sql:/docker-entrypoint-initdb.d/init.sql:ro
     ports:
       - "41301:3306"
 
@@ -154,13 +154,13 @@ services:
     container_name: phpmyadmin
     restart: unless-stopped
     environment:
-      PMA_HOST: catalog-mysql
+      PMA_HOST: ledger-mysql
       PMA_USER: root
       PMA_PASSWORD: mysql
     ports:
       - "9797:80"
     depends_on:
-      - catalog-mysql
+      - ledger-mysql
 
   redis:
     image: redis:8.4.3-alpine
@@ -198,7 +198,7 @@ services:
     restart: unless-stopped
     environment:
       - KAFKA_NODE_ID=1
-      - KAFKA_CLUSTER_ID=cinemayan-dev-cluster
+      - KAFKA_CLUSTER_ID=maya-cbs-dev-cluster
       - KAFKA_PROCESS_ROLES=broker,controller
       - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092,INTERNAL://0.0.0.0:29092,CONTROLLER://0.0.0.0:9093
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092,INTERNAL://kafka:29092
