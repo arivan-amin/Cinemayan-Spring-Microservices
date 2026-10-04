@@ -8,6 +8,7 @@ import com.cinemayan.core.domain.pagination.PaginationCriteria;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -15,6 +16,7 @@ public class GetStudiosQuery {
 
     private final StudioStorage storage;
 
+    @Transactional
     public Output execute (Input input) {
         log.debug("Fetching studios by {}", input);
         PaginatedResponse<Studio> studios = storage.findAll(input.getParams(), input.getCriteria());

@@ -5,6 +5,7 @@ import com.cinemayan.catalog.domain.studio.persistence.StudioStorage;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ public class DeleteStudioCommand {
 
     private final StudioStorage storage;
 
+    @Transactional
     public void execute (Input input) {
         storage.findById(input.getId())
             .orElseThrow(() -> {
